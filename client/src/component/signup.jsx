@@ -3,64 +3,37 @@ import './signup.css'
 import signup from '../assets/signup.svg'
 import  {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
+import useChangeTitle from './useChangeTitle'
+import Alert from './alert'
+import useForm from './useForm'
+import Small from './small'
+
 const Signup = () => {
-    let[open,setOpen]=useState(false)
-    let[open2,setOpen2]=useState(false)
-    let handleSubmit=(e)=>{
-        e.preventDefault()
-        let username=e.target[0].value
-        let email=e.target[1].value
-        let password=e.target[2].value
-        let Conpassword=e.target[3].value
-        if(password===Conpassword){
-            //axios
+    function showAlert(){
+        if(error.password){
+            return <Alert text={error.password} color={error.color}/>
         }else{
-            //Password Does not match
+            return <Alert text={error.msg} color={error.color}/>
         }
-        console.log(e);
     }
-    let showPassword=(e)=>{
-        e.preventDefault()
-        let pass=document.getElementById('password')
-      if(open){
-          setOpen(false)
-          console.log(pass);
-          pass.type='password'
-      }else{
-        setOpen(true)
-        pass.type='text'
-      }
-      
-    }
-    let showPassword2=(e)=>{
-        e.preventDefault()
-          let conpass=document.getElementById('Conpassword')
-      if(open2){
-        setOpen2(false)
-        console.log(e);
-        conpass.type='password'
-    }else{
-        
-    setOpen2(true)
-    conpass.type='text'
-    }
-    }
+    useChangeTitle('Sign Up')
+    let {handleSubmit,showPassword,showPassword2,open,open2,error}=useForm()
     return (
         <div className='container-fluid signup'>
             <div className="row">
                 <div className="col-md-6  signup-form">
-                    <p >Create Your Account</p>
-                    
+                    <p className='head' >Create Your Account</p>
+                    {showAlert()}
                     <form onSubmit={(event)=>handleSubmit(event)}>
-                        <div className="mb-4 ">
+                        <div className="mb-4">
                             <label for="exampleInputEmail1" className="form-label">Your Name</label>
                             <input placeholder='Your Name' type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
-                            
+                            <Small text={error.username}/>
                         </div>
                         <div className="mb-4 ">
                             <label for="exampleInputEmail1" className="form-label">Your Email</label>
                             <input placeholder='Your Email' type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
-                            
+                            <Small text={error.email}/>
                         </div>
                         <div className="mb-4 ">
                             <label for="exampleInputEmail1" className="form-label">Password</label>
@@ -68,7 +41,7 @@ const Signup = () => {
                             <input   placeholder='Password' type="password" className="form-control" id="password" aria-describedby="emailHelp"/>
                             <FontAwesomeIcon onClick={(event)=>showPassword(event)} icon={open?faEye:faEyeSlash}/>
                             </div>
-                           
+                        
                             
                         </div>
                         <div className="mb-4  ">

@@ -8,7 +8,7 @@
     font-size: 2rem;
     
 }
-.signup-form p{
+.signup-form .head{
     margin-left: 3%;
     margin-top: 2%;
     position: relative;
@@ -26,10 +26,10 @@
     margin-top: 13%;
 }
 
-.signup-form form input{
+/* .signup-form form input{
    
     height: 37px;
-}
+} */
 .signup-form form input[type='text']{
     font-size: 1.7rem;
 }
