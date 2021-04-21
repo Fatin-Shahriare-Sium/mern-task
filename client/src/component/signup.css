@@ -1,0 +1,66 @@
+.signup{
+    height: 100vh;
+    width: 100vw;
+}
+.signup-form {
+    
+    font-weight: bold;
+    font-size: 2rem;
+    
+}
+.signup-form p{
+    margin-left: 3%;
+    margin-top: 2%;
+    position: relative;
+    text-decoration: underline;
+    text-decoration-thickness:5px;
+}
+/* .signup-form p::before{
+    content: '';
+    position: absolute;
+    
+} */
+.signup-form form{
+    width: 77%;
+    margin: 0px auto;
+    margin-top: 13%;
+}
+
+.signup-form form input{
+   
+    height: 37px;
+}
+.signup-form form input[type='text']{
+    font-size: 1.7rem;
+}
+.signup-form form input[type='email']{
+    font-size: 1.7rem;
+}
+.signup-form form input[type='password']{
+    font-size: 1.7rem;
+}
+.signup-img{
+    height: 100vh;
+    background-color: rgb(0, 0, 0);
+}
+.signup-img img{
+   height: 500px;
+    width: 50%;
+    margin-left: 27%;
+    margin-top: 17%;
+   
+}
+button{
+    font-weight: bold;
+    font-size: 1.7rem!important;
+    border-radius: 30px;
+}
+.eye{
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+.eye svg{
+  position: absolute;
+  left: 90%;
+}

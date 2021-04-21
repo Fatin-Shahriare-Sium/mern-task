@@ -1,0 +1,45 @@
+.dasboard-nav{
+    display: flex;
+    height:9vh;
+    width: 100%;
+    
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    font-size: 1.7rem;
+}
+.dasboard-nav__account{
+    display: flex;
+}
+.dasboard-nav__time{
+    display: flex;
+  
+}
+.dasboard-nav__time p{
+    padding: 0px 15px;
+}
+.dasboard-nav__account{
+    align-items: center;
+    margin-right: 1.5%;  
+}
+.dasboard-nav__account-img{
+    padding-left: 9px;
+}
+.dasboard-nav__account-img img{
+    border-radius: 50%;
+}
+.dasboard-nav__text{
+    position: relative;
+    letter-spacing: 1px;
+    
+   margin-left: 3%;
+}
+.dasboard-nav__text::before{
+    content: '';
+    border: 3px solid black;
+    right: 103%;
+    top: 11%;
+    height: 27px;   
+    position: absolute;
+    
+}

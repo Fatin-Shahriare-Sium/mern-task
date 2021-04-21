@@ -1,0 +1,22 @@
+.dasboard-AllTaskEmpty .img-container img{
+    object-fit: contain;
+    height: 40%;
+    margin-top: 9%;
+    
+}
+
+.dasboard-AllTaskEmpty{
+    display: flex;
+    
+    justify-content: center;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.text p{
+    font-size: 3rem;
+    font-weight: bolder;
+    position: relative;
+    top: 30%;
+    left: 3%;
+    
+}

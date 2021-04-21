@@ -1,0 +1,72 @@
+.dasboard{
+    
+    height: 100vh;
+    width: 100vw;
+}
+.dasboard-container{
+    display: flex;
+    height: 89vh;
+    background-color: #f8f9fa;
+    
+}
+.dasboard-siderbar{
+    display: flex;
+    flex-direction: column;
+    flex: .2;
+    border-right: 3px solid black;
+    
+    
+}
+.dasboard-sidebar__btn {
+    width: 63%; 
+    padding: 5px;
+    display: flex;
+    align-items: center;
+   margin: 7px auto;
+   position: relative;
+   
+   
+}
+.dasboard-sidebar__btn svg{
+    font-size: 1.7rem;
+}
+.dasboard-sidebar__btn:hover{
+    background-color:  #c4c1c1 ;
+    border-radius: 7px;
+}
+.dasboard-sidebar__btn:hover button{
+    background-color:  #c4c1c1 ;
+}
+.dasboard-sidebar__btn button{
+    width: 77%;
+    margin-left: 5%;
+    font-size: 1.5rem;
+    outline: none;
+    border: none;
+    background-color: #f8f9fa;
+   
+}
+.dasboard-sidebar__btn a{
+    text-decoration: none;
+    color: rgb(0, 0, 0)!important;
+    font-weight: bold;
+}
+.active{
+    border-bottom: 3px solid black;
+    background-color:  #c4c1c1 ;
+    border-radius: 7px;
+}
+.active button{
+    background-color:  #c4c1c1 ;
+}
+.dasboard-main{
+    display: flex;
+    flex: .8;
+    background-color: aqua;
+    background-color: #f8f9fa;
+    
+}
+.dasboard-sidebar__btn button{
+    color: red;
+    
+}
