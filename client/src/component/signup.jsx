@@ -12,7 +12,7 @@ const Signup = () => {
     function showAlert(){
         if(error.password){
             return <Alert text={error.password} color={error.color}/>
-        }else{
+        }else if(error.msg){
             return <Alert text={error.msg} color={error.color}/>
         }
     }
@@ -27,12 +27,12 @@ const Signup = () => {
                     <form onSubmit={(event)=>handleSubmit(event)}>
                         <div className="mb-4">
                             <label for="exampleInputEmail1" className="form-label">Your Name</label>
-                            <input placeholder='Your Name' type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
-                            <Small text={error.username}/>
+                            <input placeholder='Your Name' type="text" className={error.username?'form-control is-invalid':'form-control'}  id="exampleInputEmail1" aria-describedby="emailHelp"/>
+                            {error.username?<Small text={error.username}/>:''}
                         </div>
                         <div className="mb-4 ">
                             <label for="exampleInputEmail1" className="form-label">Your Email</label>
-                            <input placeholder='Your Email' type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
+                            <input placeholder='Your Email' type="email" className={error.email?'form-control is-invalid':'form-control'} id="exampleInputEmail1" aria-describedby="emailHelp"/>
                             <Small text={error.email}/>
                         </div>
                         <div className="mb-4 ">
@@ -47,7 +47,7 @@ const Signup = () => {
                         <div className="mb-4  ">
                             <label for="exampleInputEmail1" className="form-label">Confrim Password</label>
                             <div className='eye'>
-                            <input  placeholder='Confrim Password'  type="password" className="form-control" id="Conpassword" aria-describedby="emailHelp"/>
+                            <input  placeholder='Confrim Password'  type="password" className="form-control " id="Conpassword" aria-describedby="emailHelp"/>
                            <FontAwesomeIcon onClick={(event)=>showPassword2(event)} icon={open2?faEye:faEyeSlash}/>
                             </div>
                             

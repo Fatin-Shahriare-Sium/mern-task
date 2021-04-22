@@ -22,29 +22,58 @@ exports.signupPostController=async (req,res,next)=>{
             
             res.status(200).json({
                 msg:'Already,created account with this email',
-                color:'warning'
+                color:'warning',
+                success:false
             })
         }else{
-            
-       
         let userx=await newUser.save()
-        console.log('login');
-        res.status(200).json({
-           msg:'Successfully,created account',
-           color:'success'
-        })
+
         let idx=userx._id
+
         let token= await jwt.sign({email,idx,username},'SECRET-KEY')
-        // res.cookie('__task77573w82',token)
+        res.cookie('__task77573w82',token)
+        res.status(200).json({
+            msg:'Successfully,created account',
+            color:'success',
+            success:true
+         })
         }
         
     }catch{
         res.status(404).json({
             msg:'Failed to create user',
-            color:'danger'
+            color:'danger',
+            success:false
         })
     }
  
 }
 
-exports.lo
+exports.loginGetController=async (req,res,next)=>{
+    let {email,pass}=req.body
+  console.log(req.body);
+    let userForLogin=await User.findOne({email:email})
+    let matchPass=await bcrypt.compare(pass,userForLogin.password)
+    try{
+        
+        if(matchPass){
+            res.status(200).json({
+                msg:'Successfully,login',
+                color:'success',
+                success:true
+            })
+        }else{
+            res.status(200).json({
+                msg:'Invalid email or password',
+                color:'warning',
+                success:false
+            })
+        }
+    }catch{
+        res.status(404).json({
+            msg:'Failed to create user',
+            color:'danger',
+            success:false
+        })
+    }
+}

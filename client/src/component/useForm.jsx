@@ -1,5 +1,5 @@
 const { useState } = require("react");
-let axios=require('axios')
+
 let useForm=()=>{
     let[open,setOpen]=useState(false)
     let[open2,setOpen2]=useState(false)
@@ -33,6 +33,9 @@ let useForm=()=>{
                     msg:data.msg,
                     color:data.color
                 })
+                if(data.success){
+                    e.target.reset()
+                }
             })
           
            

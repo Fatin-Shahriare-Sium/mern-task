@@ -4,6 +4,7 @@ import './app.css'
 import {BrowserRouter,Route,Switch} from 'react-router-dom'
 import Signup from './signup'
 import Home from './home'
+import Login from './login'
 
 let App=()=>{
 
@@ -20,6 +21,9 @@ let App=()=>{
             </Route>
             <Route path='/signup'>
             <Signup/>
+            </Route>
+            <Route path='/login'>
+                <Login/>
             </Route>
         </Switch>
           

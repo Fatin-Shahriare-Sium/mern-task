@@ -1,4 +1,7 @@
 .alert{
     height: 37px;
     font-size: 1.3rem;
+    margin-top: 3%;
+    z-index: 5;
+    transition:margin-top .3s;
 }

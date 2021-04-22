@@ -2,7 +2,9 @@ import React from 'react'
 import './small.css'
 const Small = ({text}) => {
     return (
-        <small className='signup-small'>{text}</small>
+        <div className="invalid-feedback">
+        <p>{text}</p>
+      </div>
     )
 }
 

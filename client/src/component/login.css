@@ -1,0 +1,48 @@
+.login{
+    overflow: hidden;
+    height: 100vh;
+    position: relative;
+}
+.login-img{
+    height: 100vh;
+}
+.login-img img{
+    
+    width: 100%;
+    position: relative;
+    top: 50%;
+    left: 50%;
+   transform: translate(-50%,-50%);
+    object-fit: cover;
+}
+.headx{
+    font-size: 2.3rem;
+   letter-spacing: 3px;
+    margin-top: 3%;
+    font-weight: bolder;
+    text-decoration: underline;
+    text-decoration-color:#00b1f3;
+    text-decoration-thickness: 7px;
+}
+.login-form form{
+    font-size: 2.3rem!important;
+    font-weight: 700;
+    letter-spacing: 3px;
+    width: 67%;
+    margin-top: 25%;
+}
+.login-form form input[type='email']{
+    font-weight: 700;
+    font-size: 1.7rem;
+}
+.login-form form input[type='text']{
+    font-weight: 700;
+    font-size: 1.7rem;
+}
+.login-form form input[type='password']{
+    font-weight: 700;
+    font-size: 1.7rem;
+}
+/* .login-form form div{
+    margin: 7% 0px!important;
+} */
