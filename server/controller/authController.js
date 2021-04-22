@@ -50,18 +50,25 @@ exports.signupPostController=async (req,res,next)=>{
 }
 
 exports.loginGetController=async (req,res,next)=>{
-    let {email,pass}=req.body
+    let {email,pass,isAuthenticated}=req.body
   console.log(req.body);
     let userForLogin=await User.findOne({email:email})
     let matchPass=await bcrypt.compare(pass,userForLogin.password)
     try{
-        
+        let username=userForLogin.username
+            let idx=userForLogin._id
         if(matchPass){
-            res.status(200).json({
-                msg:'Successfully,login',
-                color:'success',
-                success:true
-            })
+            if(!req.user){
+                
+                let tokenx=await jwt.sign({email,username,idx},'SECRET-KEY')
+                res.status(200).json({
+                    msg:'Successfully,login',
+                    color:'success',
+                    success:true,
+                    loggedInfo:'',
+                    tokenx
+                })
+            }
         }else{
             res.status(200).json({
                 msg:'Invalid email or password',
@@ -69,6 +76,7 @@ exports.loginGetController=async (req,res,next)=>{
                 success:false
             })
         }
+            
     }catch{
         res.status(404).json({
             msg:'Failed to create user',

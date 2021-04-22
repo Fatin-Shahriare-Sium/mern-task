@@ -1,9 +1,12 @@
+import {useHistory} from 'react-router-dom'
+
 const { useState } = require("react");
 
 let useLogin=()=>{
     let[error,setError]=useState({})
     let[open,setOpen]=useState(false)
-
+    let history=useHistory()
+    let cookie=localStorage.getItem('__toketasjy42562627')
     let handleLogin=(e)=>{
         e.preventDefault()
         let email=e.target[0].value
@@ -21,7 +24,8 @@ let useLogin=()=>{
                 },
                 body:JSON.stringify({
                     email,
-                    pass
+                    pass,
+                    isAuthenticated:cookie
                 })
             }).then(res=>res.json())
             .then(data=>{
@@ -32,6 +36,13 @@ let useLogin=()=>{
                 })
                 if(data.success){
                     e.target.reset()
+                    if(!cookie){
+                        localStorage.setItem('__toketasjy42562627',data.tokenx)
+                        console.log('nemjdh colki',cookie);
+                    }else{
+                        history.push('/dasboard')
+                    }
+                   
                 }
             })
         }
