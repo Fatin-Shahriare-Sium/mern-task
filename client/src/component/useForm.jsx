@@ -18,7 +18,7 @@ let useForm=()=>{
             color:password?'success':'danger',
             msg:''
         })
-        if(password===Conpassword){
+        if(password===Conpassword && username && email && password){
             fetch(`/auth/signup`,{
                 method:'POST',
                 headers:{
@@ -30,10 +30,11 @@ let useForm=()=>{
             }).then(res=>res.json())
             .then(data=>{
                 setError({
-                    msg:'Successfully,created account',
-                    color:'success'
+                    msg:data.msg,
+                    color:data.color
                 })
             })
+          
            
         
         }else{
