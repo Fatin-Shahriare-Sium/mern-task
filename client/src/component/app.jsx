@@ -5,13 +5,14 @@ import {BrowserRouter,Route,Switch} from 'react-router-dom'
 import Signup from './signup'
 import Home from './home'
 import Login from './login'
+import { AuthProvider } from './authContext'
 
 let App=()=>{
 
     return(
-        
-        <BrowserRouter>
-        
+       
+            <BrowserRouter>
+         <AuthProvider>
         <Switch>
             <Route exact path='/'>
             <Home/>
@@ -26,8 +27,10 @@ let App=()=>{
                 <Login/>
             </Route>
         </Switch>
-          
+        </AuthProvider>
         </BrowserRouter>
+        
+        
     )
 }
 

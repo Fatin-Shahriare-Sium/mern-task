@@ -7,6 +7,7 @@ let useLogin=()=>{
     let[open,setOpen]=useState(false)
     let history=useHistory()
     let cookie=localStorage.getItem('__toketasjy42562627')
+    console.log(cookie);
     let handleLogin=(e)=>{
         e.preventDefault()
         let email=e.target[0].value
@@ -25,6 +26,7 @@ let useLogin=()=>{
                 body:JSON.stringify({
                     email,
                     pass,
+                    haveCookie:cookie?true:false,
                     isAuthenticated:cookie
                 })
             }).then(res=>res.json())
@@ -36,7 +38,7 @@ let useLogin=()=>{
                 })
                 if(data.success){
                     e.target.reset()
-                    if(!cookie){
+                    if(data.tokenx){
                         localStorage.setItem('__toketasjy42562627',data.tokenx)
                         console.log('nemjdh colki',cookie);
                     }else{

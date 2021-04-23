@@ -51,31 +51,47 @@ exports.signupPostController=async (req,res,next)=>{
 
 exports.loginGetController=async (req,res,next)=>{
     let {email,pass,isAuthenticated}=req.body
-  console.log(req.body);
-    let userForLogin=await User.findOne({email:email})
-    let matchPass=await bcrypt.compare(pass,userForLogin.password)
+    console.log('req.body last',req.body);
+    
     try{
-        let username=userForLogin.username
-            let idx=userForLogin._id
-        if(matchPass){
-            if(!req.user){
-                
-                let tokenx=await jwt.sign({email,username,idx},'SECRET-KEY')
+        
+            console.log('onfo passed to auth controller',req.user);
+            if(req.user){
                 res.status(200).json({
+                    msg:'Successfully,login and passed middleware',
+                    color:'success',
+                    success:true,
+                    loggedInfo:req.user,
+                    tokenx:''
+                })
+            }else{
+                let userForLogin=await User.findOne({email:email})
+                let matchPass=await bcrypt.compare(pass,userForLogin.password)
+               
+                if(matchPass){
+                    let username=userForLogin.username
+                    let idx=userForLogin._id
+                    let tokenx=await jwt.sign({email,username,idx},'SECRET-KEY')
+                    
+                    
+                    res.status(200).json({
                     msg:'Successfully,login',
                     color:'success',
                     success:true,
-                    loggedInfo:'',
                     tokenx
-                })
+                    })
+                        
+                   
+        
+                }else{
+                    res.status(200).json({
+                        msg:'Invalid email or password',
+                        color:'warning',
+                        success:false
+                    })
+                }
             }
-        }else{
-            res.status(200).json({
-                msg:'Invalid email or password',
-                color:'warning',
-                success:false
-            })
-        }
+           
             
     }catch{
         res.status(404).json({
