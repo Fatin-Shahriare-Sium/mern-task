@@ -1,11 +1,14 @@
 import {useHistory} from 'react-router-dom'
+import { useAuthencation } from './authContext';
 
 const { useState } = require("react");
 
 let useLogin=()=>{
+    
     let[error,setError]=useState({})
     let[open,setOpen]=useState(false)
     let history=useHistory()
+    let {setAuth}=useAuthencation()
     let cookie=localStorage.getItem('__toketasjy42562627')
     console.log(cookie);
     let handleLogin=(e)=>{
@@ -37,12 +40,13 @@ let useLogin=()=>{
                     color:data.color
                 })
                 if(data.success){
+                    setAuth(true)
                     e.target.reset()
-                    if(data.tokenx){
+                    history.push('/dasboard')
+                   
+                    if(!data.alreadyLogged){
                         localStorage.setItem('__toketasjy42562627',data.tokenx)
                         console.log('nemjdh colki',cookie);
-                    }else{
-                        history.push('/dasboard')
                     }
                    
                 }

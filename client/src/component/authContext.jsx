@@ -7,9 +7,9 @@ export let useAuthencation=()=>{
 }
 
 export function AuthProvider({children}){
-    let[auth,setAuth]=useState({authed:false,user:''})
+    let[auth,setAuth]=useState(false)
     let[loading,setLoading]=useState(true)
-    console.log(children);
+   console.log('react context call');
     let cookie=localStorage.getItem('__toketasjy42562627')
     useEffect(()=>{
       return  fetch('/auth/login',{
@@ -24,12 +24,19 @@ export function AuthProvider({children}){
             })
         }).then(res=>res.json())
         .then(data=>{
-            console.log(data);
+            console.log('data in context',data);
+            if(data.alreadyLogged){
+                setAuth(true)
+            }else{
+                setAuth(false)
+            }
+            
             setLoading(false)
+
         })
-    },[])
+    })
     return(
-        <AuthContext.Provider value={auth}>
+        <AuthContext.Provider value={{auth,loading,setAuth}}>
             {!loading&&children}
         </AuthContext.Provider>
     )

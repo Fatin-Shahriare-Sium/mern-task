@@ -62,7 +62,7 @@ exports.loginGetController=async (req,res,next)=>{
                     color:'success',
                     success:true,
                     loggedInfo:req.user,
-                    tokenx:''
+                    alreadyLogged:true
                 })
             }else{
                 let userForLogin=await User.findOne({email:email})
@@ -78,6 +78,7 @@ exports.loginGetController=async (req,res,next)=>{
                     msg:'Successfully,login',
                     color:'success',
                     success:true,
+                    alreadyLogged:false,
                     tokenx
                     })
                         
@@ -87,7 +88,8 @@ exports.loginGetController=async (req,res,next)=>{
                     res.status(200).json({
                         msg:'Invalid email or password',
                         color:'warning',
-                        success:false
+                        success:false,
+                        alreadyLogged:false,
                     })
                 }
             }
@@ -97,7 +99,8 @@ exports.loginGetController=async (req,res,next)=>{
         res.status(404).json({
             msg:'Failed to create user',
             color:'danger',
-            success:false
+            success:false,
+            alreadyLogged:false,
         })
     }
 }

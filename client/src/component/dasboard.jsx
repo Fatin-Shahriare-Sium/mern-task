@@ -2,12 +2,20 @@ import React, { useState } from 'react'
 import './dasboard.css'
 import DasboardNav from './dasboard-nav.jsx'
 import SidebarBtn from './sidebar-btn'
-import {BrowserRouter,Switch,Route} from 'react-router-dom'
+import {BrowserRouter,Switch,Route,useHistory} from 'react-router-dom'
 import {faCalendar, faCheck, faHome, faListAlt, faPlus, faTrash,faDoorOpen} from '@fortawesome/free-solid-svg-icons'
 import DasboardAllTaskEmpty from './dasboard-AllTaskEmpty'
 import CraeteTASK from './create-task'
+import { useAuthencation } from './authContext'
 const Dasboard = () => {
     let [cvalue,setCvalue]=useState('')
+    let {auth}=useAuthencation()
+    console.log(auth);
+    let history=useHistory()
+    if(!auth){
+      console.log('!auth');
+      history.push('/login')
+    }
     return (
       <BrowserRouter >
         <div className='dasboard'>

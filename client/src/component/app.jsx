@@ -6,6 +6,8 @@ import Signup from './signup'
 import Home from './home'
 import Login from './login'
 import { AuthProvider } from './authContext'
+import PrivateRoutex from './privateRoute2'
+import PrivateRoute from './privateRoute'
 
 let App=()=>{
 
@@ -14,19 +16,24 @@ let App=()=>{
             <BrowserRouter>
          <AuthProvider>
         <Switch>
+        
             <Route exact path='/'>
             <Home/>
-            </Route>
-            <Route path='/dasboard'>
-            <Dasboard/>
             </Route>
             <Route path='/signup'>
             <Signup/>
             </Route>
-            <Route path='/login'>
-                <Login/>
-            </Route>
-        </Switch>
+            <Route path='/dasboard'>
+                <Dasboard/>
+                </Route>
+            {/* <Route path='/login' component={Login} /> */}
+          <PrivateRoute  component={Login}/>
+            
+            
+            </Switch>
+            
+         
+        
         </AuthProvider>
         </BrowserRouter>
         
