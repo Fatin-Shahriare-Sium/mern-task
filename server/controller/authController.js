@@ -3,7 +3,6 @@ let bcrypt=require('bcrypt')
 let jwt=require('jsonwebtoken')
 exports.signupPostController=async (req,res,next)=>{
     let {username,email,password}=req.body
-    console.log(req.body);
     let hased=await bcrypt.hash(password,11)
     let newUser=new User({
         username,
@@ -51,8 +50,7 @@ exports.signupPostController=async (req,res,next)=>{
 
 exports.loginGetController=async (req,res,next)=>{
     let {email,pass,isAuthenticated}=req.body
-    console.log('req.body last',req.body);
-    
+
     try{
         
             console.log('onfo passed to auth controller',req.user);

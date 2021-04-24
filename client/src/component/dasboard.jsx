@@ -7,6 +7,7 @@ import {faCalendar, faCheck, faHome, faListAlt, faPlus, faTrash,faDoorOpen} from
 import DasboardAllTaskEmpty from './dasboard-AllTaskEmpty'
 import CraeteTASK from './create-task'
 import { useAuthencation } from './authContext'
+import Showtask from './showTask'
 const Dasboard = () => {
     let [cvalue,setCvalue]=useState('')
     let {auth}=useAuthencation()
@@ -40,7 +41,8 @@ const Dasboard = () => {
            <Switch>
            <div className="dasboard-main">
                 <Route path='/dasboard/task/all'>
-                <DasboardAllTaskEmpty/>
+                {/* <DasboardAllTaskEmpty/> */}
+                <Showtask/>
                 </Route>
                 <Route path='/dasboard/task/create'>
                     <CraeteTASK/>
