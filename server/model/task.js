@@ -10,7 +10,7 @@ let taskSchema=new Schema({
         ref:'user'
     },
     
-})
+},{timestamps:true})
 
 let Task=model('task',taskSchema)
 module.exports=Task

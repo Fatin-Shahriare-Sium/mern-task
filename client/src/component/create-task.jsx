@@ -1,13 +1,20 @@
 import React from 'react'
+import Alert from './alert'
 import './create-task.css'
 import Small from './small'
 import useCreateTask from './useCreateTask'
 const CraeteTASK = () => {
     let {handleSubmit,error}= useCreateTask()
-
+    function showAlert(){
+        if(error.msg){
+            return <Alert text={error.msg} color={error.color}/>
+        }
+        
+    }
     return (
         <div className='container  dasboard-createTask'>
             <p>Create Your Task</p>
+            {showAlert()}
            <div className="row">
                <div className="w-50 mx-auto col-md-12">
                     <form onSubmit={(event)=>handleSubmit(event)}>

@@ -2,6 +2,7 @@ import { useState } from "react"
 
 let useCreateTask=()=>{
     let[error,setError]=useState({})
+    let cookie=localStorage.getItem('__toketasjy42562627')
     let handleSubmit=(e)=>{
         e.preventDefault()
         let title=e.target[0].value
@@ -25,11 +26,20 @@ let useCreateTask=()=>{
                     title,
                     des,
                     start,
-                    end
+                    end,
+                    haveCookie:cookie?true:false,
+                    isAuthenticated:cookie
                 })
             }).then(res=>res.json())
             .then(data=>{
-                console.log(data);
+                setError({
+                    msg:data.msg,
+                    success:data.success,
+                    color:data.color
+                })
+                if(data.success){
+                    e.target.reset()
+                }
             })
         }
         
