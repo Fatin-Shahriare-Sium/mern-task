@@ -29,7 +29,7 @@ const Showtask = () => {
     return (
         <div className='showtask'>
             {
-               !loading && task.map((sig,index)=> <ShowSingle key={index} title={sig.title} createdTime={createdTime(sig.createdAt)} des={sig.des} start={sig.startD} end={sig.endD} status={sig.completed}/>)
+               !loading && task.map((sig,index)=> <ShowSingle key={index} title={sig.title} id={sig._id} createdTime={createdTime(sig.createdAt)} des={sig.des} start={sig.startD} end={sig.endD} status={sig.completed}/>)
             }
            
         </div>

@@ -45,3 +45,16 @@ exports.getTaskController=async (req,res,next)=>{
     }
     console.log('allTask',allTask);
 }
+exports.getSingleTaskController=async(req,res,next)=>{
+    let {id}=req.params
+    let task=await Task.findOne({_id:id})
+    try{
+        res.status(200).json({
+            task:task
+        })
+    }catch{
+        res.status(404).json({
+            task:fasle
+        })
+    }
+}

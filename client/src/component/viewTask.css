@@ -1,0 +1,31 @@
+.viewtask{
+    width: 70%;
+    margin: auto;
+    height: 70%;
+
+}
+.viewtask-mainwrapper p{
+    font-size: 1.7rem;
+    font-weight: 500;
+}
+.viewtask-btnwrapper{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 70%;
+    margin-top: 3%;
+}
+.viewtask-btnwrapper button{
+    width: 70px;
+    border: 1px solid black;
+    background-color: #9CC0F5;
+    transition:all .5s;
+}
+.btn-edit:hover{
+    background-color: #083E8F;
+    color: white;
+}
+.btn-back:hover{
+    background-color: #000000 ;
+    color: white;
+}

@@ -5,7 +5,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheckCircle, faEdit, faFaucet,faStar,faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 import check from '../assets/check.svg'
 import star from '../assets/star.svg'
-const ShowSingle = ({title,des,start,end,status,createdTime}) => {
+import starfill from '../assets/star-fill.svg'
+import {Link} from 'react-router-dom'
+const ShowSingle = ({title,des,start,end,status,createdTime,id}) => {
     let [truncate,setTruncate]=useState(des)
     useChangeTitle('Your Task')
     // useEffect(()=>{
@@ -41,12 +43,17 @@ const ShowSingle = ({title,des,start,end,status,createdTime}) => {
                 <p className='single-time__status'>Status:{status?'Completed':'not completed'}</p>
             </div>
             </div>
+            <div className='single-details-mainwrapper__overlay'>
+                <Link to={`/dasboard/task/view/${id}`}>
+                <button className='btn btn-outline-success'>See Details</button>
+                </Link>
+            </div>
             </div>
             <div className="single-tool">
             <div className='single-tool__wrapper'>
             <FontAwesomeIcon icon={faEdit}/>
-            <FontAwesomeIcon icon={faTrashAlt}/>
-            <img src={star} alt=""/>
+            <FontAwesomeIcon className='trash-icon' icon={faTrashAlt}/>
+            <img className='star-icon' src={star} alt=""/>
             <img src={check} alt=""/>
             </div>
             </div>
