@@ -76,5 +76,7 @@
     .single-tool svg{
         padding: 3px;
     }
-   
+   .single-time__posted{
+       display: none;
+   }
 }

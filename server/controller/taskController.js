@@ -7,6 +7,8 @@ exports.createTaskPostController=async (req,res,next)=>{
         des,
         startD:start,
         endD:end,
+        complete:false,
+        important:false,
         user:req.user.idx
     })
    try{
@@ -28,4 +30,18 @@ exports.createTaskPostController=async (req,res,next)=>{
     })
    }
    
+}
+
+exports.getTaskController=async (req,res,next)=>{
+    let allTask=await User.findOne({email:'fahimshahriares@gmail.com'}).populate({
+        path:'taskAll'
+    })
+    try{
+        res.status(200).json({
+            all:allTask.taskAll
+        })
+    }catch{
+
+    }
+    console.log('allTask',allTask);
 }
