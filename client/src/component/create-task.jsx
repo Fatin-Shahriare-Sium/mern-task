@@ -3,8 +3,10 @@ import Alert from './alert'
 import './create-task.css'
 import Small from './small'
 import useCreateTask from './useCreateTask'
+import useChangeTitle from './useChangeTitle.jsx'
 const CraeteTASK = () => {
     let {handleSubmit,error}= useCreateTask()
+    useChangeTitle('Create Task')
     function showAlert(){
         if(error.msg){
             return <Alert text={error.msg} color={error.color}/>

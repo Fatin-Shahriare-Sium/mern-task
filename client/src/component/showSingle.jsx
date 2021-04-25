@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import './showSingle.css'
+import useChangeTitle from './useChangeTitle.jsx'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheckCircle, faEdit, faFaucet,faStar,faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 import check from '../assets/check.svg'
+import star from '../assets/star.svg'
 const ShowSingle = ({title,des,start,end,status,createdTime}) => {
     let [truncate,setTruncate]=useState(des)
+    useChangeTitle('Your Task')
     // useEffect(()=>{
       
     // },[truncate,setTruncate])
@@ -43,7 +46,7 @@ const ShowSingle = ({title,des,start,end,status,createdTime}) => {
             <div className='single-tool__wrapper'>
             <FontAwesomeIcon icon={faEdit}/>
             <FontAwesomeIcon icon={faTrashAlt}/>
-            <FontAwesomeIcon icon={faStar}/>
+            <img src={star} alt=""/>
             <img src={check} alt=""/>
             </div>
             </div>
