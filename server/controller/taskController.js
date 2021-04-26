@@ -106,3 +106,22 @@ exports.setCompleteController=async (req,res,next)=>{
 
     }
 }
+
+exports.setImportantController=async (req,res,next)=>{
+    let {id}=req.params
+    let {important}=req.body
+    await Task.findOneAndUpdate({_id:id},{
+        $set:{important:important}
+    })
+    let uptask=await Task.findOne({_id:id})
+    try{
+        res.json({
+            msg:uptask.important?'Congratulations,you have selected your task as important one':'It is not your important task,anymore',
+            color:uptask.important?'success':'warning',
+            success:true,
+            newTask:uptask
+    })
+    }catch{
+
+    }
+}

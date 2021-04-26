@@ -76,7 +76,7 @@ const ShowSingle = ({title,des,start,end,status,createdTime,id,loadingTigger}) =
             <img className='edit-icon' src={edit} alt=""/>
             </Link>
             <img className='trash-icon' onClick={(event)=>handleDelete(event)} src={trash} alt=""/>
-            <img className='star-icon' style={{height:'30px'}} onClick={(event)=>handleStar(event)} src={star} alt=""/>
+            <img className='star-icon' style={{height:'30px'}} onClick={(event)=>handleStar(event)} src={task.important?starfill:star} alt=""/>
             <img className='check-icon'style={{height:'30px'}} onClick={(event)=>handleComplete(event)} src={task.complete?checkfill:check} alt=""/>
             </div>
             </div>

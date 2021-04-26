@@ -62,6 +62,17 @@ let useTool=(idx,loadingTigger)=>{
                 
                 important:task.important?false:true
             })
+        }).then(res=>res.json())
+        .then(data=>{
+            setTask(data.newTask)
+            setError({
+                msg:data.msg,
+                color:data.color
+            })
+            console.log(data);
+            // loadingTigger()
+            if(data.success){
+            }
         })
     }
     return {handleComplete,handleDelete,handleStar,error,task}
