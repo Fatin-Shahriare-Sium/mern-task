@@ -9,6 +9,7 @@ import CraeteTASK from './create-task'
 import { useAuthencation } from './authContext'
 import Showtask from './showTask'
 import ViewTask from './viewTask'
+import EditTask from './editTask'
 const Dasboard = () => {
     let [cvalue,setCvalue]=useState('')
     let {auth}=useAuthencation()
@@ -50,6 +51,9 @@ const Dasboard = () => {
                 </Route>
                 <Route path='/dasboard/task/view/:id'>
                   <ViewTask/>
+                </Route>
+                <Route path='/dasboard/task/edit/:id'>
+                  <EditTask/>
                 </Route>
             </div>
 

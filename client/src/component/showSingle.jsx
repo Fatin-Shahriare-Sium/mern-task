@@ -6,6 +6,8 @@ import { faCheckCircle, faEdit, faFaucet,faStar,faTrashAlt } from '@fortawesome/
 import check from '../assets/check.svg'
 import star from '../assets/star.svg'
 import starfill from '../assets/star-fill.svg'
+import trash from '../assets/trash.svg'
+import edit from '../assets/edit.svg'
 import {Link} from 'react-router-dom'
 const ShowSingle = ({title,des,start,end,status,createdTime,id}) => {
     let [truncate,setTruncate]=useState(des)
@@ -51,10 +53,12 @@ const ShowSingle = ({title,des,start,end,status,createdTime,id}) => {
             </div>
             <div className="single-tool">
             <div className='single-tool__wrapper'>
-            <FontAwesomeIcon icon={faEdit}/>
-            <FontAwesomeIcon className='trash-icon' icon={faTrashAlt}/>
+            <Link to={`/dasboard/task/edit/${id}`}>
+            <img className='edit-icon' src={edit} alt=""/>
+            </Link>
+            <img className='trash-icon' src={trash} alt=""/>
             <img className='star-icon' src={star} alt=""/>
-            <img src={check} alt=""/>
+            <img className='check-icon' src={check} alt=""/>
             </div>
             </div>
             
