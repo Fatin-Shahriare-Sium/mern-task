@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './showSingle.css'
 import useChangeTitle from './useChangeTitle.jsx'
+import ReactDOM from 'react-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheckCircle, faEdit, faFaucet,faStar,faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 import check from '../assets/check.svg'
@@ -8,13 +9,28 @@ import star from '../assets/star.svg'
 import starfill from '../assets/star-fill.svg'
 import trash from '../assets/trash.svg'
 import edit from '../assets/edit.svg'
+import checkfill from '../assets/checkfill.svg'
 import {Link} from 'react-router-dom'
-const ShowSingle = ({title,des,start,end,status,createdTime,id}) => {
+import useTool from './useTool'
+import Alert from './alert'
+const ShowSingle = ({title,des,start,end,status,createdTime,id,loadingTigger}) => {
     let [truncate,setTruncate]=useState(des)
     useChangeTitle('Your Task')
-    // useEffect(()=>{
-      
-    // },[truncate,setTruncate])
+    console.log('showsingle call');
+
+    let {handleComplete,handleDelete,handleStar,error,task}= useTool(id,loadingTigger)
+   
+    let AlertPortal=()=>{
+        console.log(error);
+        if(error.msg){
+            return ReactDOM.createPortal(
+              <div className={`alertx ${error.color}`}>
+                 <p> {error.msg}</p>
+              </div>
+              ,document.getElementById('alert'))
+        }
+        
+    }
     window.addEventListener('resize',(e)=>{
         let width=e.target.innerWidth
     
@@ -31,14 +47,17 @@ const ShowSingle = ({title,des,start,end,status,createdTime,id}) => {
             }
         
     })
+   
     return (
         <div className='single shadow'>
+         {AlertPortal()}
             <div className="single-details-mainwrapper">
             <div className='single-details-wrapper'>
             <div className="single-details">
                 <p className='single-details__title'>{title}</p>
                 <p className='single-details__des'>{truncate}</p>
             </div>
+            
             <div className="single-time">
                 <p className='single-time__time'>{`Time:${start}-${end}`}</p>
                 <p className='single-time__posted'>{`Created, ${createdTime}`}</p>
@@ -56,9 +75,9 @@ const ShowSingle = ({title,des,start,end,status,createdTime,id}) => {
             <Link to={`/dasboard/task/edit/${id}`}>
             <img className='edit-icon' src={edit} alt=""/>
             </Link>
-            <img className='trash-icon' src={trash} alt=""/>
-            <img className='star-icon' src={star} alt=""/>
-            <img className='check-icon' src={check} alt=""/>
+            <img className='trash-icon' onClick={(event)=>handleDelete(event)} src={trash} alt=""/>
+            <img className='star-icon' style={{height:'30px'}} onClick={(event)=>handleStar(event)} src={star} alt=""/>
+            <img className='check-icon'style={{height:'30px'}} onClick={(event)=>handleComplete(event)} src={task.complete?checkfill:check} alt=""/>
             </div>
             </div>
             

@@ -43,7 +43,7 @@ exports.getTaskController=async (req,res,next)=>{
     }catch{
 
     }
-    console.log('allTask',allTask);
+   
 }
 exports.getSingleTaskController=async(req,res,next)=>{
     let {id}=req.params
@@ -62,7 +62,6 @@ exports.getSingleTaskController=async(req,res,next)=>{
 exports.editTaskController=async (req,res,next)=>{
     let {id}=req.params
     let {title,des,start,end,complete,important}=req.body
-    console.log('req.body',req.body);
     try{
         await Task.findOneAndUpdate({_id:id},{
             $set:{
@@ -85,5 +84,25 @@ exports.editTaskController=async (req,res,next)=>{
             color:'danger',
             success:false
         })
+    }
+}
+
+exports.setCompleteController=async (req,res,next)=>{
+    let {id}=req.params
+    let {complete}=req.body
+    console.log('req.body in complete controller',req.body);
+    await Task.findOneAndUpdate({_id:id},{
+        $set:{complete:complete}
+    })
+    let uptask=await Task.findOne({_id:id})
+    try{
+        res.json({
+            msg:uptask.complete?'Congratulations,you have completed your task':'You have not completed your task',
+            color:uptask.complete?'success':'warning',
+            success:true,
+            newTask:uptask
+    })
+    }catch{
+
     }
 }

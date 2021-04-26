@@ -109,6 +109,32 @@
     border-radius: 15px;
     
 }
+/* Alert Portal */
+.alertx{
+    position: absolute;
+    top: 13%;
+    left: 21%;
+    width: 77%;
+    font-size: 1.7rem;
+    display: flex;
+    align-items: center;
+    height: 46px;
+    border-radius: 30px;
+}
+.alertx p{
+  
+    margin: 0px 2%;
+}
+.success{
+    background-color:#5cf18e;
+    color: #000000;
+    font-weight: 700;
+}
+.warning{
+    background-color:#f9df59;
+    color: #09aaf9;
+    font-weight: 700;
+}
 @media screen and (max-width:500px) {
 
     .single-tool__wrapper{
