@@ -5,6 +5,8 @@ let taskSchema=new Schema({
     des:String,
     startD:String,
     endD:String,
+    complete:Boolean,
+    important:Boolean,
     user:{
         type:Schema.Types.ObjectId,
         ref:'user'

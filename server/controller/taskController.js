@@ -33,7 +33,7 @@ exports.createTaskPostController=async (req,res,next)=>{
 }
 
 exports.getTaskController=async (req,res,next)=>{
-    let allTask=await User.findOne({email:'fahimshahriares@gmail.com'}).populate({
+    let allTask=await User.findOne({_id:req.user.idx}).populate({
         path:'taskAll'
     })
     try{
@@ -55,6 +55,35 @@ exports.getSingleTaskController=async(req,res,next)=>{
     }catch{
         res.status(404).json({
             task:fasle
+        })
+    }
+}
+
+exports.editTaskController=async (req,res,next)=>{
+    let {id}=req.params
+    let {title,des,start,end,complete,important}=req.body
+    console.log('req.body',req.body);
+    try{
+        await Task.findOneAndUpdate({_id:id},{
+            $set:{
+                title,
+                des,
+                startD:start,
+                endD:end,
+                complete,
+                important
+            }
+        })
+        res.json({
+            msg:'Successfully,updated',
+            color:'success',
+            success:true
+        })
+    }catch{
+        res.json({
+            msg:'Failed to update',
+            color:'danger',
+            success:false
         })
     }
 }

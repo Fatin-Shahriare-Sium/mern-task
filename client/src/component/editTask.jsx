@@ -7,8 +7,8 @@ import useEdit from './useEdit.jsx'
 
 const EditTask = () => {
     let {id}=useParams()
-    let {handleEdit,error}= useEdit(id)
-    let[loading,setLoading]=useState(true)
+    let[task,setTask]=useState({})
+    
     useEffect(()=>{
         let title=document.getElementById('title')
         let des=document.getElementById('des')
@@ -22,19 +22,19 @@ const EditTask = () => {
         }).then(res=>res.json())
         .then(data=>{
             let taskx=data.task
-            // // title.innerText=taskx.title
-            // des.innerText=taskx.des
-            console.log(des);
-            setLoading(false)
             
-           
+             title.value=taskx.title
+            des.innerText=taskx.des
+            start.value=taskx.startD
+            end.value=taskx.endD
+            setTask(taskx)
         })
     
   
     },[id])
     
     useChangeTitle('Edit Task')
-   
+    let {handleEdit,error}= useEdit(id,task)
    
    function showAlert(){
     if(error.msg){
@@ -45,7 +45,7 @@ const EditTask = () => {
     return (
         
         <>
-       {!loading&&<div className='container  dasboard-createTask'>
+       <div className='container  dasboard-createTask'>
         <p>Create Your Task</p>
         {showAlert()}
        <div className="row">
@@ -53,7 +53,7 @@ const EditTask = () => {
                 <form onSubmit={(event)=>handleEdit(event)}>
                     <div className="mb-3 dasboard-createTask__title ">
                         <label for="exampleInputEmail1" className="form-label">Task Title</label>
-                        <input type="text" value='sds' className={error.title?'form-control is-invalid':'form-control'} id="title"/>
+                        <input  type="text"  className={error.title?'form-control is-invalid':'form-control'} id="title"/>
                         <Small text={error.title}/>
                         
                     </div>
@@ -77,7 +77,7 @@ const EditTask = () => {
             </form>
            </div>
        </div>
-    </div>}
+    </div>
     </>
     )
 }

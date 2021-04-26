@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react"
+import { useHistory } from "react-router"
 
 
-let useEdit=(idx)=>{
-
+let useEdit=(idx,taskx)=>{
+    console.log('iuseedirt',taskx);
+    let history=useHistory()
     let[error,setError]=useState({})
-    
-    let cookie=localStorage.getItem('__toketasjy42562627')
     let handleEdit=(e)=>{
         e.preventDefault()
         let title=e.target[0].value
@@ -30,11 +30,12 @@ let useEdit=(idx)=>{
                     des,
                     start,
                     end,
-                    haveCookie:cookie?true:false,
-                    isAuthenticated:cookie
+                    complete:taskx.complete,
+                    important:taskx.important
                 })
             }).then(res=>res.json())
             .then(data=>{
+                console.log('usedit',data);
                 setError({
                     msg:data.msg,
                     success:data.success,
@@ -42,6 +43,9 @@ let useEdit=(idx)=>{
                 })
                 if(data.success){
                     e.target.reset()
+                    setTimeout(()=>{
+                        history.push('/dasboard/task/all')
+                    },500)
                 }
             })
         }
