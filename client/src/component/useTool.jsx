@@ -1,25 +1,70 @@
-import { useState,useEffect } from "react"
-import { useHistory } from "react-router";
-
-let useTool=(idx,loadingTigger)=>{
-    console.log('useTool',);
-    let[task,setTask]=useState({})
-    let[error,setError]=useState({})
-    let history=useHistory()
+import {useEffect, useReducer } from "react"
+let useTool=(location)=>{
+    console.log('useTool');
+    let cookie=localStorage.getItem('__toketasjy42562627')
+    let Action={
+        TASK_ENTER:'task-enter',
+        ERROR_ENTER:'error',
+        SET_LOADING:'loading'
+    }
     
-    useEffect(()=>{
-        fetch(`/task/${idx}`,{
-            method:'GET',
-            headers:{
-                "Content-Type":"application/json"
+    let reducer=(state,action)=>{
+        if(action.type===Action.TASK_ENTER){
+            console.log('task enter reducer');
+            return {
+                ...state,
+                task:action.payload
             }
+        }else if(action.type===Action.ERROR_ENTER){
+            return{
+                ...state,
+                error:action.payload
+            }
+        }else if(action.type===Action.SET_LOADING){
+            return{
+                ...state,
+                loading:action.payload
+            }
+        }
+        return state;
+    }
+    let [state,dispatch]=useReducer(reducer,{
+        task:{},
+        error:{},
+        loading:true
+    })
+
+   
+    useEffect(()=>{
+        fetch('/task',{
+            method:'POST',
+            headers:{
+                'Content-Type':'application/json'
+            },
+            body:JSON.stringify({
+               
+                haveCookie:cookie?true:false,
+                isAuthenticated:cookie
+            })
         }).then(res=>res.json())
         .then(data=>{
-            setTask(data.task)
+            console.log(data);
+            if(location.pathname==='/dasboard/task/completed'){
+                let completedTask=data.all.filter(sig=>sig.complete===true)
+              
+                dispatch({type:Action.TASK_ENTER,payload:completedTask})
+            }else{
+                dispatch({type:Action.TASK_ENTER,payload:data.all})
+            }
+            dispatch({type:Action.SET_LOADING,payload:false})
+           
         })
-    },[])
-    function handleComplete(e) {
+    },[state.loading])
+  
+    function handleComplete(e,idx) {
         console.log('hamdleComplete',idx)
+        let forTask=state.task.find(sig=>sig._id==idx)
+
         fetch(`/task/complete/${idx}`,{
             method:'POST',
             headers:{
@@ -27,22 +72,24 @@ let useTool=(idx,loadingTigger)=>{
             },
             body:JSON.stringify({
                 
-                complete:task.complete?false:true
+                complete:forTask.complete?false:true
                 
             })
         }).then(res=>res.json())
         .then(data=>{
-            setTask(data.newTask)
-            setError({
+            console.log(data);
+            dispatch({type:Action.SET_LOADING,payload:true})
+            // dispatch({type:Action.TASK_ENTER,payload:data.newTask})
+            let errorx={
                 msg:data.msg,
                 color:data.color
-            })
-   
-            if(data.success){
             }
+            dispatch({type:Action.ERROR_ENTER,payload:errorx})
+           
+
         })
     }
-    function handleDelete(e){
+    function handleDelete(e,idx){
        
        
         fetch(`/task/delete/${idx}`,{
@@ -52,14 +99,16 @@ let useTool=(idx,loadingTigger)=>{
             }
         }).then(res=>res.json())
         .then(data=>{
-            setError({
+            // dispatch({type:Action.SET_LOADING,payload:true})
+            let errorx={
                 msg:data.msg,
                 color:data.color
-            })
-            loadingTigger()
+            }
+            dispatch({type:Action.ERROR_ENTER,payload:errorx})
+        
         })
     }
-    function handleStar(e){
+    function handleStar(e,idx){
         fetch(`/task/important/${idx}`,{
             method:'POST',
             headers:{
@@ -67,15 +116,18 @@ let useTool=(idx,loadingTigger)=>{
             },
             body:JSON.stringify({
                 
-                important:task.important?false:true
+                important:state.task.important?false:true
             })
         }).then(res=>res.json())
         .then(data=>{
-            setTask(data.newTask)
-            setError({
+            // // dispatch({type:Action.SET_LOADING,payload:true})
+            // dispatch({type:Action.TASK_ENTER,payload:data.newTask})
+            let errorx={
                 msg:data.msg,
                 color:data.color
-            })
+            }
+            dispatch({type:Action.ERROR_ENTER,payload:errorx})
+           
             console.log(data);
             
             if(data.success){
@@ -83,7 +135,11 @@ let useTool=(idx,loadingTigger)=>{
             }
         })
     }
-    return {handleComplete,handleDelete,handleStar,error,task,setError}
+
+    let errorHandeler=()=>{
+        dispatch({type:Action.ERROR_ENTER,payload:{}})
+    }
+    return {handleComplete,handleDelete,handleStar,state,errorHandeler}
 }
 
 export default useTool;

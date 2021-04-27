@@ -56,9 +56,11 @@ const Dasboard = () => {
                 <Route exact path='/dasboard/task/edit/:id'>
                   <EditTask/>
                 </Route>
-                <Route exact path='/dasboard/task/completed'>
+                <Route exact  path='/dasboard/task/completed'>
                   <Showtask/>
+                  
                 </Route>
+               
             </div>
 
 
