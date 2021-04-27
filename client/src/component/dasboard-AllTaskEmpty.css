@@ -7,10 +7,12 @@
 
 .dasboard-AllTaskEmpty{
     display: flex;
+    height:80% ;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
     
-    justify-content: center;
-    overflow-y: auto;
-    overflow-x: hidden;
 }
 .text p{
     font-size: 3rem;

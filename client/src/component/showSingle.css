@@ -114,30 +114,35 @@
     position: absolute;
     top: 13%;
     left: 21%;
-    width: 77%;
     font-size: 1.7rem;
     display: flex;
     align-items: center;
     height: 46px;
     border-radius: 30px;
     transition: all .3s;
+    opacity: 0;
+    width: 0%;
 }
 .alertx p{
-  
+    opacity: 1;
     margin: 0px 2%;
+   
 }
 .success{
- 
+    opacity: 1;
+    width: 77%;
     background-color:#5cf18e;
     color: #000000;
     font-weight: 700;
+   
    
 }
 .warning{
     background-color:#f9df59;
     color: #09aaf9;
     font-weight: 700;
-  
+    opacity: 1;
+    width: 77%;
 }
 @media screen and (max-width:500px) {
 

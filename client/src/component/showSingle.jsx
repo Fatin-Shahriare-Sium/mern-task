@@ -12,7 +12,7 @@ import {Link} from 'react-router-dom'
 const ShowSingle = ({title,des,start,end,complete,important,createdTime,id,handleComplete,handleDelete,handleStar}) => {
     let [truncate,setTruncate]=useState(des)
     useChangeTitle('Your Task')
-    console.log('show single');
+
     window.addEventListener('resize',(e)=>{
         let width=e.target.innerWidth
     

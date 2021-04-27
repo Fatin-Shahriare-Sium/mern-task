@@ -40,7 +40,9 @@ const ViewTask = () => {
                 </div>
            </div>
            <div className="viewtask-btnwrapper">
+               <Link to={`/dasboard/task/edit/${id}`}>
                <button className='btn-edit'>Edit</button>
+               </Link>
                <Link to='/dasboard/task/all'>
                <button className='btn-back'>Back</button>
                </Link>

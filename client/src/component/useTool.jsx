@@ -1,6 +1,6 @@
 import {useEffect, useReducer } from "react"
 let useTool=(location)=>{
-    console.log('useTool');
+    console.log('use tool');
     let cookie=localStorage.getItem('__toketasjy42562627')
     let Action={
         TASK_ENTER:'task-enter',
@@ -10,7 +10,6 @@ let useTool=(location)=>{
     
     let reducer=(state,action)=>{
         if(action.type===Action.TASK_ENTER){
-            console.log('task enter reducer');
             return {
                 ...state,
                 task:action.payload
@@ -48,21 +47,25 @@ let useTool=(location)=>{
             })
         }).then(res=>res.json())
         .then(data=>{
-            console.log(data);
+            
             if(location.pathname==='/dasboard/task/completed'){
                 let completedTask=data.all.filter(sig=>sig.complete===true)
               
                 dispatch({type:Action.TASK_ENTER,payload:completedTask})
+            }else if(location.pathname==='/dasboard/task/important'){
+                console.log('dasboard/task/important');
+                let importantTask=data.all.filter(sig=>sig.important===true)
+                dispatch({type:Action.TASK_ENTER,payload:importantTask})
             }else{
                 dispatch({type:Action.TASK_ENTER,payload:data.all})
             }
             dispatch({type:Action.SET_LOADING,payload:false})
            
         })
-    },[state.loading])
+    },[state.error])
   
     function handleComplete(e,idx) {
-        console.log('hamdleComplete',idx)
+        
         let forTask=state.task.find(sig=>sig._id==idx)
 
         fetch(`/task/complete/${idx}`,{
@@ -77,8 +80,8 @@ let useTool=(location)=>{
             })
         }).then(res=>res.json())
         .then(data=>{
-            console.log(data);
-            dispatch({type:Action.SET_LOADING,payload:true})
+            
+            // dispatch({type:Action.SET_LOADING,payload:true})
             // dispatch({type:Action.TASK_ENTER,payload:data.newTask})
             let errorx={
                 msg:data.msg,
@@ -109,6 +112,7 @@ let useTool=(location)=>{
         })
     }
     function handleStar(e,idx){
+        let forTask=state.task.find(sig=>sig._id==idx)
         fetch(`/task/important/${idx}`,{
             method:'POST',
             headers:{
@@ -116,7 +120,7 @@ let useTool=(location)=>{
             },
             body:JSON.stringify({
                 
-                important:state.task.important?false:true
+                important:forTask.important?false:true
             })
         }).then(res=>res.json())
         .then(data=>{
@@ -128,18 +132,10 @@ let useTool=(location)=>{
             }
             dispatch({type:Action.ERROR_ENTER,payload:errorx})
            
-            console.log(data);
-            
-            if(data.success){
-
-            }
         })
     }
 
-    let errorHandeler=()=>{
-        dispatch({type:Action.ERROR_ENTER,payload:{}})
-    }
-    return {handleComplete,handleDelete,handleStar,state,errorHandeler}
+    return {handleComplete,handleDelete,handleStar,state}
 }
 
 export default useTool;

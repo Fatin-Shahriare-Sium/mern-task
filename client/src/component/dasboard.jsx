@@ -29,10 +29,10 @@ const Dasboard = () => {
             <div   className='dasboard-siderbar'>
             <SidebarBtn handle={()=>setCvalue('Dasboard')} value='Dasboard' clickValue={cvalue} link='/dasboard' Icon={faHome} />
             <SidebarBtn handle={()=>setCvalue('Create Task')} value='Create Task' clickValue={cvalue} link='/dasboard/task/create' Icon={faPlus} />
-            <SidebarBtn handle={()=>setCvalue('Completed Task')} value='Completed Task' clickValue={cvalue} link='/dasboard/task/completed' Icon={faCheck}/>
             <SidebarBtn handle={()=>setCvalue('All Task')} value='All Task' clickValue={cvalue} link='/dasboard/task/all' Icon={faListAlt}/>
+            <SidebarBtn handle={()=>setCvalue('Completed Task')} value='Completed Task' clickValue={cvalue} link='/dasboard/task/completed' Icon={faCheck}/>
+            <SidebarBtn handle={()=>setCvalue('Important Task')} value='Important Task' clickValue={cvalue} link='/dasboard/task/important' iconx={starx}/>
             <SidebarBtn handle={()=>setCvalue('Calender')} value='Calender' clickValue={cvalue} link='/dasboard/calender' Icon={faCalendar}/>
-            <SidebarBtn handle={()=>setCvalue('Important Task')} value='Important Task' clickValue={cvalue} link='/dasboard/task/deleted' iconx={starx}/>
 
             <div style={{marginTop:'83%'}} className="logout">
             <SidebarBtn handle={()=>setCvalue('Deleted Task')} value='Log out' clickValue={cvalue} link='/task/deleted' Icon={faDoorOpen}/>
@@ -58,7 +58,9 @@ const Dasboard = () => {
                 </Route>
                 <Route exact  path='/dasboard/task/completed'>
                   <Showtask/>
-                  
+                </Route>
+                <Route path='/dasboard/task/important'>
+                <Showtask/>
                 </Route>
                
             </div>
