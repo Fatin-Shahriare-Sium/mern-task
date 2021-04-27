@@ -17,9 +17,9 @@ let useTool=(idx,loadingTigger)=>{
         .then(data=>{
             setTask(data.task)
         })
-    },[idx])
+    },[])
     function handleComplete(e) {
-        
+        console.log('hamdleComplete',idx)
         fetch(`/task/complete/${idx}`,{
             method:'POST',
             headers:{
@@ -37,7 +37,7 @@ let useTool=(idx,loadingTigger)=>{
                 msg:data.msg,
                 color:data.color
             })
-            // loadingTigger()
+   
             if(data.success){
             }
         })
@@ -50,6 +50,13 @@ let useTool=(idx,loadingTigger)=>{
             headers:{
                 "Content-Type":"application/json"
             }
+        }).then(res=>res.json())
+        .then(data=>{
+            setError({
+                msg:data.msg,
+                color:data.color
+            })
+            loadingTigger()
         })
     }
     function handleStar(e){
@@ -70,12 +77,13 @@ let useTool=(idx,loadingTigger)=>{
                 color:data.color
             })
             console.log(data);
-            // loadingTigger()
+            
             if(data.success){
+
             }
         })
     }
-    return {handleComplete,handleDelete,handleStar,error,task}
+    return {handleComplete,handleDelete,handleStar,error,task,setError}
 }
 
 export default useTool;

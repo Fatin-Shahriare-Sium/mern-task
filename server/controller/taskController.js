@@ -125,3 +125,23 @@ exports.setImportantController=async (req,res,next)=>{
 
     }
 }
+
+exports.deleteTaskController=async (req,res,next)=>{
+    let {id}=req.params
+    await Task.findOneAndDelete({_id:id})
+    try{
+        res.json({
+            msg:'Done,you have deleted your task',
+            color:'success',
+            success:true,
+            
+    })
+    }catch{
+        res.json({
+            msg:'Network error,unable to delete',
+            color:'warning',
+            success:true,
+            
+    })
+    }
+}

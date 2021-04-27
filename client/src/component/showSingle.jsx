@@ -16,20 +16,24 @@ import Alert from './alert'
 const ShowSingle = ({title,des,start,end,status,createdTime,id,loadingTigger}) => {
     let [truncate,setTruncate]=useState(des)
     useChangeTitle('Your Task')
-    console.log('showsingle call');
+   
 
-    let {handleComplete,handleDelete,handleStar,error,task}= useTool(id,loadingTigger)
+    let {handleComplete,handleDelete,handleStar,error,task,setError}= useTool(id,loadingTigger)
    
     let AlertPortal=()=>{
-        console.log(error);
         if(error.msg){
+            setTimeout(()=>{
+                setError({})
+            },700)
             return ReactDOM.createPortal(
-              <div className={`alertx ${error.color}`}>
-                 <p> {error.msg}</p>
-              </div>
-              ,document.getElementById('alert'))
+                <div className={`alertx ${error.color}`}>
+                   <p> {error.msg}</p>
+                  
+                </div>
+                ,document.getElementById('alert'))
+                
         }
-        
+  
     }
     window.addEventListener('resize',(e)=>{
         let width=e.target.innerWidth
@@ -61,7 +65,7 @@ const ShowSingle = ({title,des,start,end,status,createdTime,id,loadingTigger}) =
             <div className="single-time">
                 <p className='single-time__time'>{`Time:${start}-${end}`}</p>
                 <p className='single-time__posted'>{`Created, ${createdTime}`}</p>
-                <p className='single-time__status'>Status:{status?'Completed':'not completed'}</p>
+                <p className='single-time__status'>Status:{task.complete?'Completed':'not completed'}</p>
             </div>
             </div>
             <div className='single-details-mainwrapper__overlay'>

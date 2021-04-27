@@ -120,20 +120,24 @@
     align-items: center;
     height: 46px;
     border-radius: 30px;
+    transition: all .3s;
 }
 .alertx p{
   
     margin: 0px 2%;
 }
 .success{
+ 
     background-color:#5cf18e;
     color: #000000;
     font-weight: 700;
+   
 }
 .warning{
     background-color:#f9df59;
     color: #09aaf9;
     font-weight: 700;
+  
 }
 @media screen and (max-width:500px) {
 
