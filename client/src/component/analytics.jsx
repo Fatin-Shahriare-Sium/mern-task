@@ -17,12 +17,11 @@ const Analytics = () => {
         labels: [
           'allTask',
           'Completed',
-          'important',
-          'deleted'
+          'important'
         ],
         datasets: [{
           label: 'AllTaskx',
-          data: ['100','10','40','30'],
+          data: ['100','3','9'],
           backgroundColor: backcolorArr
         }
         ]

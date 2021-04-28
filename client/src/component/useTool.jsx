@@ -74,7 +74,8 @@ let useTool=(location)=>{
                 "Content-Type":"application/json"
             },
             body:JSON.stringify({
-                
+                haveCookie:cookie?true:false,
+                isAuthenticated:cookie,
                 complete:forTask.complete?false:true
                 
             })
@@ -119,7 +120,8 @@ let useTool=(location)=>{
                 "Content-Type":"application/json"
             },
             body:JSON.stringify({
-                
+                haveCookie:cookie?true:false,
+                isAuthenticated:cookie,
                 important:forTask.important?false:true
             })
         }).then(res=>res.json())

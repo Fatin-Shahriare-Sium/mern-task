@@ -94,14 +94,34 @@ exports.setCompleteController=async (req,res,next)=>{
     await Task.findOneAndUpdate({_id:id},{
         $set:{complete:complete}
     })
+    let user=await User.findOne({_id:req.user.idx}).populate({
+        path:'completedTask'
+    })
+    
+    if(user.completedTask.includes(id)){
+        await User.findOneAndUpdate({_id:req.user.idx},{
+            $pull:{completedTask:id}
+        })
+    }else{
+        await User.findOneAndUpdate({_id:req.user.idx},{
+            $push:{completedTask:id}
+        })
+    }
+
+    console.log('user in complete',user);
+   
     let uptask=await Task.findOne({_id:id})
     try{
+
         res.json({
             msg:uptask.complete?'Congratulations,you have completed your task':'You have not completed your task',
             color:uptask.complete?'success':'warning',
             success:true,
             newTask:uptask
     })
+
+
+
     }catch{
 
     }
@@ -110,10 +130,27 @@ exports.setCompleteController=async (req,res,next)=>{
 exports.setImportantController=async (req,res,next)=>{
     let {id}=req.params
     let {important}=req.body
+
     await Task.findOneAndUpdate({_id:id},{
         $set:{important:important}
     })
+
+    let user=await User.findOne({_id:req.user.idx}).populate({
+        path:'important'
+    })
+
+    if(user.important.includes(id)){
+        await User.findOneAndUpdate({_id:req.user.idx},{
+            $pull:{important:id}
+        })
+    }else{
+        await User.findOneAndUpdate({_id:req.user.idx},{
+            $push:{important:id}
+        })
+    }
+
     let uptask=await Task.findOne({_id:id})
+
     try{
         res.json({
             msg:uptask.important?'Congratulations,you have selected your task as important one':'It is not your important task,anymore',
@@ -129,6 +166,9 @@ exports.setImportantController=async (req,res,next)=>{
 exports.deleteTaskController=async (req,res,next)=>{
     let {id}=req.params
     await Task.findOneAndDelete({_id:id})
+    await User.findOneAndUpdate({_id:req.user.idx},{
+        $pull:{taskAll:id}
+    })
     try{
         res.json({
             msg:'Done,you have deleted your task',
