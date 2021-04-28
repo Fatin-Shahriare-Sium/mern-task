@@ -97,10 +97,14 @@ let useTool=(location)=>{
        
        
         fetch(`/task/delete/${idx}`,{
-            method:'GET',
+            method:'POST',
             headers:{
                 "Content-Type":"application/json"
-            }
+            },
+            body:JSON.stringify({
+                haveCookie:cookie?true:false,
+                isAuthenticated:cookie,
+            })
         }).then(res=>res.json())
         .then(data=>{
             // dispatch({type:Action.SET_LOADING,payload:true})

@@ -105,3 +105,16 @@ exports.loginGetController=async (req,res,next)=>{
         })
     }
 }
+
+exports.getAnalticsForUser=async (req,res,next)=>{
+    let userx=await User.findOne({_id:req.user.idx})
+    try{
+        res.status(200).json({
+            user:userx
+        })
+    }catch{
+        res.status(200).json({
+            user:'Network error'
+        })
+    }
+}

@@ -1,47 +1,67 @@
-import React, { useEffect } from 'react'
-import Chart from 'chart.js/auto';
+import React, { useEffect, useState } from 'react'
+import { PolarArea,defaults } from 'react-chartjs-2'
 import './analytics.css'
-Chart.defaults.plugins.legend.position='right'
-Chart.defaults.plugins.legend.fullsize=false
-Chart.defaults.plugins.legend.maxWidth='500'
+defaults.plugins.legend.position='right'
 const Analytics = () => {
-  
+  let[dataArr,setDataArr]=useState([])
+  let cookie=localStorage.getItem('__toketasjy42562627')
+
     let backcolorArr=[
         '#009dfd',
         ' #00fd3a',
         '#0051fd ',
-        '#fd005c'
+        
 
     ]
+
     const data = {
-        labels: [
-          'allTask',
-          'Completed',
-          'important'
-        ],
-        datasets: [{
-          label: 'AllTaskx',
-          data: ['100','3','9'],
-          backgroundColor: backcolorArr
-        }
-        ]
-      };
+      labels: [
+        'allTask',
+        'Completed',
+        'important'
+      ],
+      datasets: [{
+        label: 'AllTaskx',
+        data: dataArr,
+        backgroundColor: backcolorArr
+      }
+      ]
+    };
+    // const optionx = {
+    //   legend: {
+    //       position: 'right',
+        
+    //   }
+    // }
     useEffect(()=>{
         //all 
         //compl  
         //impo  
         //delete 
-        var ctx = document.getElementById('myChart').getContext('2d');
-    var myChart = new Chart(ctx, {
-        type: 'polarArea',
-        data,
-    });
-
+        fetch('/auth/userdata',{
+          method:'POST',
+          headers:{
+              'Content-Type':'application/json'
+          },
+          body:JSON.stringify({
+              
+              haveCookie:cookie?true:false,
+              isAuthenticated:cookie
+          })
+      }).then(res=>res.json())
+      .then(data=>{
+        let user=data.user
+        console.log(data);
+        let datax=[user.taskAll.length,user.completedTask.length,user.important.length]
+        setDataArr(datax)
+      })
+    
     },[])
     return (
         <div className='dasboard-analytics'>
-            
-            <canvas id="myChart"></canvas>
+            <PolarArea
+            data={data}
+            />
             </div>
         
     )

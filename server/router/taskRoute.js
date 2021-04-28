@@ -8,6 +8,6 @@ router.post('/',authState,getTaskController)
 router.post('/update/:id',editTaskController)
 router.post('/complete/:id',authState,setCompleteController)
 router.post('/important/:id',authState,setImportantController)
-router.get('/delete/:id',deleteTaskController)
+router.post('/delete/:id',authState,deleteTaskController)
 router.get('/:id',getSingleTaskController)
 module.exports=router

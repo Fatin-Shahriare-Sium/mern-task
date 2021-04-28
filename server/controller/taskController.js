@@ -90,13 +90,8 @@ exports.editTaskController=async (req,res,next)=>{
 exports.setCompleteController=async (req,res,next)=>{
     let {id}=req.params
     let {complete}=req.body
-    console.log('req.body in complete controller',req.body);
-    await Task.findOneAndUpdate({_id:id},{
-        $set:{complete:complete}
-    })
-    let user=await User.findOne({_id:req.user.idx}).populate({
-        path:'completedTask'
-    })
+   
+    let user=await User.findOne({_id:req.user.idx})
     
     if(user.completedTask.includes(id)){
         await User.findOneAndUpdate({_id:req.user.idx},{
@@ -110,8 +105,12 @@ exports.setCompleteController=async (req,res,next)=>{
 
     console.log('user in complete',user);
    
-    let uptask=await Task.findOne({_id:id})
+    
     try{
+        await Task.findOneAndUpdate({_id:id},{
+            $set:{complete:complete}
+        })
+        let uptask=await Task.findOne({_id:id})
 
         res.json({
             msg:uptask.complete?'Congratulations,you have completed your task':'You have not completed your task',
@@ -135,9 +134,8 @@ exports.setImportantController=async (req,res,next)=>{
         $set:{important:important}
     })
 
-    let user=await User.findOne({_id:req.user.idx}).populate({
-        path:'important'
-    })
+    let user=await User.findOne({_id:req.user.idx})
+   
 
     if(user.important.includes(id)){
         await User.findOneAndUpdate({_id:req.user.idx},{
@@ -167,7 +165,7 @@ exports.deleteTaskController=async (req,res,next)=>{
     let {id}=req.params
     await Task.findOneAndDelete({_id:id})
     await User.findOneAndUpdate({_id:req.user.idx},{
-        $pull:{taskAll:id}
+        $pull:{taskAll:id,completedTask:id,important:id}
     })
     try{
         res.json({

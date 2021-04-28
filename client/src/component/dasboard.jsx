@@ -4,7 +4,6 @@ import DasboardNav from './dasboard-nav.jsx'
 import SidebarBtn from './sidebar-btn'
 import {BrowserRouter,Switch,Route,useHistory} from 'react-router-dom'
 import {faCalendar, faCheck, faHome, faListAlt, faPlus, faTrash,faDoorOpen,faStar} from '@fortawesome/free-solid-svg-icons'
-
 import CraeteTASK from './create-task'
 import { useAuthencation } from './authContext'
 import Showtask from './showTask'
@@ -12,6 +11,7 @@ import ViewTask from './viewTask'
 import EditTask from './editTask'
 import starx from '../assets/starx.svg'
 import Analytics from './analytics'
+import analytics from '../assets/analytics.svg'
 const Dasboard = () => {
     let [cvalue,setCvalue]=useState('')
     let {auth,user}=useAuthencation()
@@ -36,7 +36,7 @@ const Dasboard = () => {
             <SidebarBtn handle={()=>setCvalue('All Task')} value='All Task' clickValue={cvalue} link='/dasboard/task/all' Icon={faListAlt}/>
             <SidebarBtn handle={()=>setCvalue('Completed Task')} value='Completed Task' clickValue={cvalue} link='/dasboard/task/completed' Icon={faCheck}/>
             <SidebarBtn handle={()=>setCvalue('Important Task')} value='Important Task' clickValue={cvalue} link='/dasboard/task/important' iconx={starx}/>
-            <SidebarBtn handle={()=>setCvalue('Calender')} value='Calender' clickValue={cvalue} link='/dasboard/analytics' Icon={faCalendar}/>
+            <SidebarBtn handle={()=>setCvalue('Analytics')} value='Analytics' clickValue={cvalue} link='/dasboard/analytics' iconx={analytics}/>
 
             <div style={{marginTop:'83%'}} className="logout">
             <SidebarBtn handle={()=>setCvalue('Deleted Task')} value='Log out' clickValue={cvalue} link='/task/deleted' Icon={faDoorOpen}/>
