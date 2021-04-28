@@ -28,12 +28,13 @@ exports.signupPostController=async (req,res,next)=>{
         let userx=await newUser.save()
 
         let idx=userx._id
-
-        let token= await jwt.sign({email,idx,username},'SECRET-KEY')
+        let pic=userx.profilePic
+        let token= await jwt.sign({email,idx,username,pic},'SECRET-KEY')
         res.cookie('__task77573w82',token)
         res.status(200).json({
             msg:'Successfully,created account',
             color:'success',
+            loggedInfo:{email,idx,username,pic},
             success:true
          })
         }
@@ -69,13 +70,15 @@ exports.loginGetController=async (req,res,next)=>{
                 if(matchPass){
                     let username=userForLogin.username
                     let idx=userForLogin._id
-                    let tokenx=await jwt.sign({email,username,idx},'SECRET-KEY')
+                    let pic=userForLogin.profilePic
+                    let tokenx=await jwt.sign({email,username,idx,pic},'SECRET-KEY')
                     
                     
                     res.status(200).json({
                     msg:'Successfully,login',
                     color:'success',
                     success:true,
+                    loggedInfo:{email,idx,username,pic},
                     alreadyLogged:false,
                     tokenx
                     })

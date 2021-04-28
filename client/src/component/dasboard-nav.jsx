@@ -3,7 +3,7 @@ import Clock from './clock'
 import './dasboard-nav.css'
 
 
-const DasboardNav = () => {
+const DasboardNav = ({name,pic}) => {
   
    
    
@@ -16,10 +16,10 @@ const DasboardNav = () => {
            </div>
             <div className='dasboard-nav__account'>
                 <div className="dasboard-nav__account-info">
-                    <p>Fatin Shahriare</p>
+                    <p>{name}</p>
                 </div>
                 <div className="dasboard-nav__account-img">
-                    <img style={{width:'37px'}} src="https://png.pngtree.com/png-vector/20200625/ourmid/pngtree-white-collar-black-and-white-silhouette-curly-hair-boy-avatar-png-image_2266276.jpg" alt=""/>
+                    <img style={{width:'37px'}} src={pic} alt=""/>
                 </div>
             </div>
             

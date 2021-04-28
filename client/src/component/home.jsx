@@ -1,5 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import Analytics from './analytics'
 const Home = () => {
     return (
         <div>
@@ -9,6 +10,7 @@ const Home = () => {
             <Link to='/login'>
             <button>Login</button>
             </Link>
+            <Analytics/>
         </div>
     )
 }

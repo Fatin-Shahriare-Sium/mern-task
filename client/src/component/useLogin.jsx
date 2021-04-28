@@ -42,13 +42,13 @@ let useLogin=()=>{
                 if(data.success){
                     setAuth(true)
                     e.target.reset()
-                    history.push('/dasboard')
+                    
                    
                     if(!data.alreadyLogged){
                         localStorage.setItem('__toketasjy42562627',data.tokenx)
                         console.log('nemjdh colki',cookie);
                     }
-                   
+                    history.push('/dasboard')
                 }
             })
         }
