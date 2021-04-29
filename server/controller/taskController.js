@@ -183,3 +183,13 @@ exports.deleteTaskController=async (req,res,next)=>{
     })
     }
 }
+
+exports.recentTaskController=async(req,res,next)=>{
+    let recentTask=await User.findOne({_id:req.user.idx}).sort({createdAt:1}).populate({
+        path:'taskAll'
+    })
+    console.log('recentask',recentTask);
+    res.status(200).json({
+        recent:recentTask.taskAll.reverse()
+    })
+}

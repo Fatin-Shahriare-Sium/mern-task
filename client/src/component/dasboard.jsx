@@ -12,6 +12,7 @@ import EditTask from './editTask'
 import starx from '../assets/starx.svg'
 import Analytics from './analytics'
 import analytics from '../assets/analytics.svg'
+import DasboardHome from './dasboardHome'
 const Dasboard = () => {
     let [cvalue,setCvalue]=useState('')
     let {auth,user}=useAuthencation()
@@ -47,6 +48,9 @@ const Dasboard = () => {
 
            <Switch>
            <div className="dasboard-main">
+                <Route exact path='/dasboard'>
+                  <DasboardHome/>
+                </Route>
                 <Route exact path='/dasboard/task/all'>
                
                 <Showtask/>

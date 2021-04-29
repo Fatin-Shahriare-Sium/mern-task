@@ -1,0 +1,13 @@
+.dasboard-home{
+    width: 100%;
+   
+}
+.dasboard-home a{
+    text-decoration: none;
+}
+.dasboard-home__title{
+    font-size: 3rem;
+    font-weight: 700;
+    margin-left: 1%;
+    color: #000000;
+}

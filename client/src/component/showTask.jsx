@@ -8,6 +8,7 @@ import useTool from './useTool'
 import DasboardAllTaskEmpty from './dasboard-AllTaskEmpty'
 import EmptyCompletedTask from './emptyCompletedTask'
 import EmptyImportantTask from './emptyImportantTask'
+import Loading from './loading'
 //https://medium.com/how-to-react/create-a-calendar-in-react-js-e48e43ab3a19
 const Showtask = () => {
    
@@ -47,11 +48,11 @@ const Showtask = () => {
     return (
         <div className='showtask'>
             {AlertPortal()}
-            {renderConditionally()}
+            {state.loading?<Loading/> :renderConditionally()}
             
            
         </div>
     )
 }
-
+//
 export default Showtask;

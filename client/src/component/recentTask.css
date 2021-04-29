@@ -1,0 +1,26 @@
+.recent{
+    width: 70%;
+    background-color: #dfdadc;
+    border-radius: 7px;
+    margin: 2% 1%;
+}
+.recent-bottom{
+    display: flex;
+}
+.recent__tilte{
+    font-size: 2rem;
+    color: #000000;
+    font-weight: 700;
+    margin-left: 1%;
+}
+.recent-bottom__des{
+    font-size: 1.3rem;
+    font-weight: 300;
+    color: #000000;
+}
+.recent-bottom{
+    display: flex;
+    justify-content: space-between;
+    width: 97%;
+    margin: 0px auto;
+}
