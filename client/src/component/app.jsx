@@ -8,6 +8,7 @@ import Login from './login'
 import { AuthProvider } from './authContext'
 import PrivateRoutex from './privateRoute2'
 import PrivateRoute from './privateRoute'
+import Profile from './profile'
 
 let App=()=>{
 
@@ -20,16 +21,16 @@ let App=()=>{
             <Route exact path='/'>
             <Home/>
             </Route>
-            <Route path='/signup'>
+            <Route exact path='/signup'>
             <Signup/>
             </Route>
-            <Route path='/dasboard'>
+
+            <Route exact path='/dasboard'>
                 <Dasboard/>
                 </Route>
             {/* <Route path='/login' component={Login} /> */}
           <PrivateRoute  component={Login}/>
-            
-            
+           
             </Switch>
             
          

@@ -1,4 +1,5 @@
 import React  from 'react'
+import { Link,NavLink } from 'react-router-dom'
 import Clock from './clock'
 import './dasboard-nav.css'
 
@@ -19,7 +20,7 @@ const DasboardNav = ({name,pic}) => {
                     <p>{name}</p>
                 </div>
                 <div className="dasboard-nav__account-img">
-                    <img style={{width:'37px'}} src={pic} alt=""/>
+                   <Link to='/dasboard/profile'> <img style={{width:'37px'}} data-tooltip='profile' src={pic} alt=""/></Link>
                 </div>
             </div>
             

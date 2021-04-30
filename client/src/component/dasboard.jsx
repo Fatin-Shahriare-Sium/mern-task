@@ -13,6 +13,7 @@ import starx from '../assets/starx.svg'
 import Analytics from './analytics'
 import analytics from '../assets/analytics.svg'
 import DasboardHome from './dasboardHome'
+import Profile from './profile'
 const Dasboard = () => {
     let [cvalue,setCvalue]=useState('')
     let {auth,user}=useAuthencation()
@@ -72,6 +73,9 @@ const Dasboard = () => {
                 </Route>
                <Route path='/dasboard/analytics'>
                  <Analytics/>
+               </Route>
+               <Route path='/dasboard/profile'>
+                 <Profile/>
                </Route>
             </div>
 

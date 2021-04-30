@@ -1,0 +1,69 @@
+form{
+    display: flex;
+    width: 80%;
+    margin: 3% auto;
+    flex-direction: column;
+}
+.profile-form__info{
+    flex: .7;
+    display: flex;
+    flex-direction: column;
+}
+.profile-form__wrapper{
+    display: flex;
+    width: 100%;
+}
+form::placeholder{
+    
+    color: rgb(12, 12, 12);
+}
+.profile-form__img{
+    position: relative;
+    flex: .3;
+    display: flex;
+   
+}
+.profile-form__info label{
+    font-size: 2rem;
+    margin: 0!important;
+    font-weight: 700;
+}
+.profile-form__info input[type='email']{
+    font-weight: 700;
+    font-size: 1.7rem;
+}
+.profile-form__info input[type='text']{
+    font-weight: 700;
+    font-size: 1.7rem;
+}
+.profile-form__info input[type='password']{
+    font-weight: 700;
+    font-size: 1.7rem;
+}
+.profile-form__imgconatiner{
+    width: 80%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.profile-form__imgconatiner button{
+    width: 100%;
+    border-radius: 7px;
+    background-color: #dddddd;
+    margin-top: 1%;
+    outline: none;
+}
+.profile-form__imgconatiner button:hover{
+    background-color: #000000;
+    color: #ffffff;
+    transition: all .3s ease-in-out;
+}
+.profile-form__imgconatiner img{
+    object-fit: contain;
+    width: 100%;
+}
+#bio{
+    resize: none;
+    height: 70px;
+}
