@@ -5,6 +5,12 @@ let userSchema=new Schema({
     email:String,
     password:String,
     profilePic:String,
+    profile:[
+        {
+            type:Schema.Types.ObjectId,
+            ref:'profile'
+        }
+    ],
     taskAll:[
         {
             type:Schema.Types.ObjectId,

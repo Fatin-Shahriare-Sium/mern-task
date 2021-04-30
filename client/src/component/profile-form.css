@@ -52,12 +52,14 @@ form::placeholder{
     border-radius: 7px;
     background-color: #dddddd;
     margin-top: 1%;
+    position: relative;
     outline: none;
 }
 .profile-form__imgconatiner button:hover{
     background-color: #000000;
     color: #ffffff;
     transition: all .3s ease-in-out;
+
 }
 .profile-form__imgconatiner img{
     object-fit: contain;
@@ -66,4 +68,10 @@ form::placeholder{
 #bio{
     resize: none;
     height: 70px;
+}
+.file-btn{
+    opacity: 0;
+    position: absolute;
+    left: 0%;
+    cursor: pointer;
 }

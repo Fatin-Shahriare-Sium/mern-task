@@ -2,6 +2,7 @@ let express=require('express')
 let mongoose =require('mongoose')
 let authRouter=require('./router/authRoute.js')
 let taskRouter=require('./router/taskRoute.js')
+let profileRouter=require('./router/profileRoute.js')
 let cookieparser=require('cookie-parser')
 //cd backend/task-maneger
 let app=express()
@@ -16,6 +17,7 @@ let middleware=[
 app.use(middleware)
 app.use('/auth',authRouter)
 app.use('/task',taskRouter)
+app.use('/profile',profileRouter)
 app.get('/',(req,res)=>{
     res.json('Allah is Almighty')
 })
