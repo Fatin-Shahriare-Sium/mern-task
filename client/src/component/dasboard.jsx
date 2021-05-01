@@ -29,7 +29,7 @@ const Dasboard = () => {
       <BrowserRouter >
         <div className='dasboard'>
           
-            {user&&<DasboardNav pic={user.pic} name={user.username}/>}
+            {user&&<DasboardNav pic={user.profilePic} name={user.username}/>}
             
             <div className="dasboard-container">
             <div   className='dasboard-siderbar'>

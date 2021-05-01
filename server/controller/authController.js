@@ -51,7 +51,7 @@ exports.signupPostController=async (req,res,next)=>{
 
 exports.loginGetController=async (req,res,next)=>{
     let {email,pass,isAuthenticated}=req.body
-
+    let user=await User.findOne({_id:req.user.idx})
     try{
         
             console.log('onfo passed to auth controller',req.user);
@@ -60,7 +60,7 @@ exports.loginGetController=async (req,res,next)=>{
                     msg:'Successfully,login and passed middleware',
                     color:'success',
                     success:true,
-                    loggedInfo:req.user,
+                    loggedInfo:user,
                     alreadyLogged:true
                 })
             }else{

@@ -2,15 +2,14 @@ import React,{useEffect} from 'react'
 import './profile-form.css'
 import useProfile from './useProfile'
 const ProfileForm = () => {
-    let {handleProfile,profile}=useProfile()
-    useEffect(()=>{
-        let user=document.getElementById('user')
-        user.nodeValue=profile.text
-    },[])
+    let {handleProfile,profile,msg}=useProfile()
+   
     return (
         <>
         <p style={{fontSize:'2rem',textDecoration:'underline'}}>{profile.text}</p>
-            <form onSubmit={(event)=>handleProfile(event)}>
+            <form className='profile-form' onSubmit={(event)=>handleProfile(event,profile.user.profile[0]._id)}>
+                
+                {console.log('in profile-form')}
                 <div className="profile-form__wrapper">
                     <div className="profile-form__info">
                             <div class="mb-3">
@@ -19,7 +18,7 @@ const ProfileForm = () => {
                             </div>
                             <div class="mb-3">
                                 <label for="exampleInputPassword1" class="form-label">Your Status</label>
-                                <input type="text" id='email' placeholder='e.g:student,job,freelancher' class="form-control"/>
+                                <input type="text" id='status' placeholder='e.g:student,job,freelancher' class="form-control"/>
                             </div>
                             <div class="mb-3">
                                 <label for="exampleInputPassword1" class="form-label">Your Address</label>
@@ -33,9 +32,9 @@ const ProfileForm = () => {
                     </div>
                     <div className="profile-form__img">
                         <div className="profile-form__imgconatiner">
-                            <img src="https://www.scaleo.io/blog/wp-content/uploads/2020/09/Task-Spotting_App.jpg" alt=""/>
+                            <img id='pic' src="https://www.scaleo.io/blog/wp-content/uploads/2020/09/Task-Spotting_App.jpg" alt=""/>
                             
-                            <button>Edit<input className='file-btn' type="file"/></button>
+                            <button>Edit<input className='file-btn'  type="file"/></button>
                             
                         </div>
                     </div>

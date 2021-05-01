@@ -2,9 +2,9 @@ let {Schema,model}=require('mongoose')
 
 let profileSchema=new Schema({
     username:String,
-    email:String,
     bio:String,
     address:String,
+    status:String,
     profilePic:String,
     user:{
         type:Schema.Types.ObjectId,
