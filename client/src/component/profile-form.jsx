@@ -1,14 +1,32 @@
 import React,{useEffect} from 'react'
 import './profile-form.css'
 import useProfile from './useProfile'
+import ReactDOM from 'react-dom'
 const ProfileForm = () => {
-    let {handleProfile,profile,msg}=useProfile()
-   
+    let {handleProfile,profile,msg,blob,setBlob,setMsg}=useProfile()
+    function handleImgFile(e){
+        let url=URL.createObjectURL(e.target.files[0])
+        setBlob(url)
+        console.log('on change');
+    }
+    function showAlert(){
+        if(!msg){
+            <p>Loading...</p>
+        }else{
+            setTimeout(()=>{
+                setMsg('')
+            },1000)
+            return ReactDOM.createPortal(<div className='alertx success'>
+            <p>{msg}</p>
+        </div>
+           ,document.getElementById('alert') )
+        }
+    }
     return (
         <>
         <p style={{fontSize:'2rem',textDecoration:'underline'}}>{profile.text}</p>
             <form className='profile-form' onSubmit={(event)=>handleProfile(event,profile.user.profile[0]._id)}>
-                
+                {showAlert()}
                 {console.log('in profile-form')}
                 <div className="profile-form__wrapper">
                     <div className="profile-form__info">
@@ -32,9 +50,9 @@ const ProfileForm = () => {
                     </div>
                     <div className="profile-form__img">
                         <div className="profile-form__imgconatiner">
-                            <img id='pic' src="https://www.scaleo.io/blog/wp-content/uploads/2020/09/Task-Spotting_App.jpg" alt=""/>
+                            <img id='pic' src={blob} alt=""/>
                             
-                            <button>Edit<input className='file-btn'  type="file"/></button>
+                            <button type='button'>Edit<input onChange={(event)=>handleImgFile(event)} className='file-btn'  type="file"/></button>
                             
                         </div>
                     </div>

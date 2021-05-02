@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
+import { useAuthencation } from "./authContext";
 
 
 let useProfile=()=>{
     let[profile,setProfile]=useState({})
-    let[msg,setMsg]=useState({})
+    let[msg,setMsg]=useState()
+    let[blob,setBlob]=useState('')
     let cookie=localStorage.getItem('__toketasjy42562627')
-
+   let {setAuth}= useAuthencation()
     function sendCreateProfileRequest(username,status,address,bio,pic){
         fetch('/profile/create',{
             method:'POST',
@@ -76,11 +78,12 @@ let useProfile=()=>{
             addressx.value=userx.profile.length!==0?userx.profile[0].address:''
             bio.value=userx.profile.length!==0?userx.profile[0].bio:''
             status.value=userx.profile.length!==0?userx.profile[0].status:''
-            pic.src=userx.profilePic
-            setMsg('')
+            setBlob(userx.profilePic)
+            // pic.src=userx.profilePic
+            setMsg(data.msg)
           console.log('data get first useefeect',data);
         })
-    },[setMsg,msg])
+    },[])
     let handleProfile=async (e,profileId)=>{
         e.preventDefault()
         console.log(e);
@@ -105,11 +108,11 @@ let useProfile=()=>{
             data.url && sendUpdateProfileRequest(username,status,address,bio,data.url,profileId)
           }
             
-            
+            setAuth(true)
         })
      
     }
-    return {handleProfile,profile,msg}
+    return {handleProfile,profile,msg,blob,setBlob,setMsg}
 }
 
 export default useProfile;

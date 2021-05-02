@@ -36,7 +36,7 @@ export function AuthProvider({children}){
             setLoading(false)
 
         })
-    },[])
+    },[auth])
     return(
         <AuthContext.Provider value={{auth,loading,setAuth,user}}>
             {!loading&&children}
