@@ -4,8 +4,17 @@ import './analytics.css'
 defaults.plugins.legend.position='right'
 const Analytics = () => {
   let[dataArr,setDataArr]=useState([])
+  window.addEventListener('resize',(e)=>{
+    
+    if(e.target.innerWidth<800){
+      console.log('tyfghvPX');
+      defaults.plugins.legend.position='top'
+    }else{
+      defaults.plugins.legend.position='right'
+    }
+  })
   let cookie=localStorage.getItem('__toketasjy42562627')
-
+  
     let backcolorArr=[
         '#009dfd',
         ' #00fd3a',

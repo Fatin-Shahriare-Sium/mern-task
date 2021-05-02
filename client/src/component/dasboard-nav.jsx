@@ -20,7 +20,7 @@ const DasboardNav = ({name,pic}) => {
                     <p>{name}</p>
                 </div>
                 <div className="dasboard-nav__account-img">
-                   <Link to='/dasboard/profile'> <img style={{width:'37px'}} data-tooltip='profile' src={pic} alt=""/></Link>
+                   <Link to='/dasboard/profile'> <img style={{width:'37px',objectFit:'cover'}} data-tooltip='profile' src={pic} alt=""/></Link>
                 </div>
             </div>
             

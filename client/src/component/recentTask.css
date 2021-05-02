@@ -24,3 +24,8 @@
     width: 97%;
     margin: 0px auto;
 }
+@media screen and (max-width:800px) {
+    .recent{
+        margin: 2% auto!important;
+    }
+}
