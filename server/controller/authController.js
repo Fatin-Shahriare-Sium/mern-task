@@ -118,3 +118,34 @@ exports.getAnalticsForUser=async (req,res,next)=>{
         })
     }
 }
+
+exports.changePassController=async(req,res,next)=>{
+    let {old,newpass}=req.body
+    let userx=await User.findOne({_id:req.user.idx})
+    try{
+        let match=await bcrypt.compare(old,userx.password)
+        console.log('match',match);
+        if(match){  
+            let hased=await bcrypt.hash(newpass,10)
+            let user=await User.findOneAndUpdate({_id:req.user.idx},{
+                $set:{password:hased}
+            })
+            res.status(200).json({
+                msg:'Successfully,updated your password',
+                color:'success'
+            })
+        }else{
+            res.status(200).json({
+                msg:'Your old password is not matching',
+                color:'warning'
+            })
+        }
+       
+    }catch{
+
+    }
+    
+    
+   
+    
+}
