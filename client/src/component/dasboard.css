@@ -30,6 +30,14 @@
 .dasboard-sidebar__btn svg{
     font-size: 1.7rem;
 }
+.dasboard-siderbar a{
+    text-decoration: none;
+    color: black;
+}
+.dasboard-siderbar a:hover{
+    text-decoration: none;
+    color: black;
+}
 .dasboard-sidebar__btn:hover{
     background-color:  #c4c1c1 ;
     border-radius: 7px;
@@ -66,13 +74,13 @@
     background-color: #f8f9fa;
     
 }
-.dasboard-sidebar__btn button{
+/* .dasboard-sidebar__btn button{
     color: red;
     
-}
+} */
 @media only screen and (max-width:800px){
     .dasboard-siderbar{
-        display: none!important;
+        display: none;
     }
     .dasboard-main{
         flex: 1!important;

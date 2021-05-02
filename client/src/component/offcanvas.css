@@ -1,0 +1,16 @@
+.offcanvas-start{
+    width: 50%!important;
+   
+}
+.offcanvas-shadow{
+    position: absolute;
+    background-color: rgb(0,0,0,.3);
+    z-index: 1039;
+    width: 200%;
+    height: 170%;
+}
+.offcanvas-wrapper{
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}

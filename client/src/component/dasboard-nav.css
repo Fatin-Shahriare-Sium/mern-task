@@ -67,3 +67,29 @@
     position: absolute;
     
 }
+.burger{
+    margin-left: 2%;
+    display: none;
+    
+}
+.burger img{
+    width: 19px;
+}
+@media all and (max-width:800px){
+    .dasboard-nav__text{
+        display: none;
+    }
+    .burger{
+        display: block;
+       
+    }
+    .dasboard-nav__time{
+        margin-left: 5%;
+    }
+}
+
+@media screen and (max-width:500px) {
+    .dasboard-nav__time{
+        display: none;
+    }
+}
