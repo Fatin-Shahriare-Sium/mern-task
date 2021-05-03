@@ -24,7 +24,7 @@ const ProfileForm = () => {
     }
     return (
         <>
-        <p style={{fontSize:'2rem',textDecoration:'underline'}}>{profile.text}</p>
+        <p className='profile-form__header' style={{fontSize:'2rem',textDecoration:'underline'}}>{profile.text}</p>
             <form className='profile-form' onSubmit={(event)=>handleProfile(event,profile.user.profile[0]._id)}>
                 {showAlert()}
                 {console.log('in profile-form')}
@@ -60,7 +60,7 @@ const ProfileForm = () => {
                     </div>
             
             
-            <button type='submit'>{profile.text}</button>
+            <button  type='submit'>{profile.text}</button>
         </form>
         </>
     )

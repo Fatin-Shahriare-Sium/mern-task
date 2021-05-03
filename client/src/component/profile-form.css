@@ -75,3 +75,14 @@ form::placeholder{
     left: 0%;
     cursor: pointer;
 }
+@media screen and (max-width:500px) {
+    .profile-form{
+        width: 93%;
+    }
+    .profile-form__info{
+        flex: .6;
+    }
+    .profile-form__img{
+        flex: .4;
+    }
+}

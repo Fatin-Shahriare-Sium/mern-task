@@ -50,6 +50,10 @@
     margin-top: 4%;
 }
 .profile-main{
-    display: flex;
     margin-top: 5%;
+}
+@media screen and (max-width:700px){
+    .profile-nav{
+        width: 55%;
+    }
 }

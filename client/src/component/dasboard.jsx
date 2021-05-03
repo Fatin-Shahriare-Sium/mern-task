@@ -14,14 +14,13 @@ import Analytics from './analytics'
 import analytics from '../assets/analytics.svg'
 import DasboardHome from './dasboardHome'
 import Profile from './profile'
+import useLogout from './useLogout'
 const Dasboard = () => {
+  let cookie=localStorage.getItem('__toketasjy42562627')
     let [cvalue,setCvalue]=useState('')
-    let {auth,user}=useAuthencation()
-   
+   let {handleLogout}=useLogout()
     let history=useHistory()
-    console.log('auth',auth);
-    console.log('user',user)
-    if(!auth){
+    if(!cookie){
       console.log('!auth');
       history.push('/login')
     }
@@ -29,7 +28,7 @@ const Dasboard = () => {
       <BrowserRouter >
         <div className='dasboard'>
           
-            {user&&<DasboardNav pic={user.profilePic} name={user.username}/>}
+            <DasboardNav/>
             
             <div className="dasboard-container">
             <div   className='dasboard-siderbar'>
@@ -41,7 +40,7 @@ const Dasboard = () => {
             <SidebarBtn handle={()=>setCvalue('Analytics')} value='Analytics' clickValue={cvalue} link='/dasboard/analytics' iconx={analytics}/>
 
             <div style={{marginTop:'83%'}} className="logout">
-            <SidebarBtn handle={()=>setCvalue('Deleted Task')} value='Log out' clickValue={cvalue} link='/task/deleted' Icon={faDoorOpen}/>
+            <SidebarBtn handle={()=>handleLogout()} value='Log out' clickValue={cvalue} link='/task/deleted' Icon={faDoorOpen}/>
                 
             </div>
 

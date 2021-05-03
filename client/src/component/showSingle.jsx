@@ -10,33 +10,32 @@ import check from '../assets/check.svg'
 import {Link} from 'react-router-dom'
 
 const ShowSingle = ({title,des,start,end,complete,important,createdTime,id,handleComplete,handleDelete,handleStar}) => {
-    let [truncate,setTruncate]=useState(des)
+    let [width,setWidth]=useState(window.innerWidth)
     useChangeTitle('Your Task')
 
     window.addEventListener('resize',(e)=>{
-        let width=e.target.innerWidth
-    
-
-            if(des.length<50 && width>1500 ){
-                setTruncate(des)
-            }else if(des.length>50 && width>1500){
-                setTruncate(des.substring(0,50)+'...')
-            }
-            else if(width<800){
-                
-                setTruncate(des.substring(0,33)+'...')
-               
-            }
+        let widthx=e.target.innerWidth
+        if(widthx<800){
+            setWidth(700)
+        }else{
+            setWidth(1000)
+        }
         
     })
-   
+    function textTruncate(text){
+        if(text.length>50 && width>800){
+            return text.substring(0,47)+'....'
+        }else if(width<800){
+            return text.substring(0,20)+'....'
+        }
+    }
     return (
         <div className='single shadow'>
             <div className="single-details-mainwrapper">
             <div className='single-details-wrapper'>
             <div className="single-details">
                 <p className='single-details__title'>{title}</p>
-                <p className='single-details__des'>{truncate}</p>
+                <p className='single-details__des'>{textTruncate(des)}</p>
             </div>
             
             <div className="single-time">

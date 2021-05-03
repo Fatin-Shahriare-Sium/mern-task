@@ -8,7 +8,7 @@ const ChangePassword = () => {
         if(error.msg){
             setTimeout(()=>{
                 setError('')
-            },1000)
+            },700)
             return ReactDOM.createPortal(<div className={`alertx ${error.color}`}>
             <p>{error.msg}</p>
         </div>,document.getElementById('alert'))

@@ -7,6 +7,7 @@ import useLogin from './useLogin.jsx'
 import  {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
 import Alert from './alert'
+import { Link } from 'react-router-dom'
 const Login = () => {
     useChangeTitle('Login')
     let {handleLogin,showPassword,open,error}=useLogin()
@@ -43,7 +44,9 @@ const Login = () => {
                        
                     </div>
                     <button type="submit" class="btn btn-primary">Login</button>
+                    <p style={{letterSpacing:'0px'}}>Have not an account,<Link to='/signup'>Signup</Link></p>
                 </form>
+                
                 </div>
             </div>
         </div>

@@ -50,55 +50,14 @@ exports.signupPostController=async (req,res,next)=>{
 }
 
 exports.loginGetController=async (req,res,next)=>{
-    let {email,pass,isAuthenticated}=req.body
-    let user=await User.findOne({_id:req.user.idx})
+    let {email,pass}=req.body
+   
     try{
-        
-            console.log('onfo passed to auth controller',req.user);
-            if(req.user){
-                res.status(200).json({
-                    msg:'Successfully,login and passed middleware',
-                    color:'success',
-                    success:true,
-                    loggedInfo:user,
-                    alreadyLogged:true
-                })
-            }else{
-                let userForLogin=await User.findOne({email:email})
-                let matchPass=await bcrypt.compare(pass,userForLogin.password)
-               
-                if(matchPass){
-                    let username=userForLogin.username
-                    let idx=userForLogin._id
-                    let pic=userForLogin.profilePic
-                    let tokenx=await jwt.sign({email,username,idx,pic},'SECRET-KEY')
-                    
-                    
-                    res.status(200).json({
-                    msg:'Successfully,login',
-                    color:'success',
-                    success:true,
-                    loggedInfo:{email,idx,username,pic},
-                    alreadyLogged:false,
-                    tokenx
-                    })
-                        
-                   
-        
-                }else{
-                    res.status(200).json({
-                        msg:'Invalid email or password',
-                        color:'warning',
-                        success:false,
-                        alreadyLogged:false,
-                    })
-                }
-            }
-           
-            
-    }catch{
+            matchPass(req,res,User,email,pass,bcrypt)
+          
+    }catch (err){
         res.status(404).json({
-            msg:'Failed to create user',
+            msg:'Failed to login',
             color:'danger',
             success:false,
             alreadyLogged:false,
@@ -148,4 +107,54 @@ exports.changePassController=async(req,res,next)=>{
     
    
     
+}
+
+async function matchPass(req,res,User,email,pass,bcrypt){
+    if(req.user){
+        let user=await User.findOne({_id:req.user.idx})
+        console.log('onfo passed to auth controller',req.user);
+        res.status(200).json({
+            msg:'Successfully,login and passed middleware',
+            color:'success',
+            success:true,
+            loggedInfo:user,
+            alreadyLogged:true
+        })
+    }else{
+        
+        let userForLogin=await User.findOne({email:email})
+                console.log('userForLogin',userForLogin);
+                let matchPass=userForLogin?await bcrypt.compare(pass,userForLogin.password):false
+                
+                if(matchPass){
+                    
+                    let username=userForLogin.username
+                    let idx=userForLogin._id
+                    let pic=userForLogin.profilePic
+                    let tokenx=await jwt.sign({email,username,idx,pic},'SECRET-KEY')
+                    
+                    
+                    res.status(200).json({
+                    msg:'Successfully,login',
+                    color:'success',
+                    success:true,
+                    loggedInfo:{email,idx,username,pic},
+                    alreadyLogged:false,
+                    tokenx
+                    })
+                        
+                   
+        
+                }else{
+                    res.status(200).json({
+                        msg:'Invalid email or password',
+                        color:'warning',
+                        success:false,
+                        alreadyLogged:false,
+                    })
+                }
+    }
+    
+    
+            
 }

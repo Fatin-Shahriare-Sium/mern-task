@@ -46,3 +46,13 @@
 /* .login-form form div{
     margin: 7% 0px!important;
 } */
+
+@media screen and (max-width:800px) {
+    .login-img{
+        display: none;
+    }
+    .login-form form{
+        width: 93%;
+        margin-top: 37%;
+    }
+}

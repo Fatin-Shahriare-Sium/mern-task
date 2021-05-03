@@ -64,3 +64,15 @@ button{
   position: absolute;
   left: 90%;
 }
+@media screen and (max-width:800px) {
+    .signup-img{
+        display: none;
+    }
+   
+}
+@media screen and (max-width:500px) {
+    .signup-form form{
+        margin-top: 27%;
+       
+    }
+}

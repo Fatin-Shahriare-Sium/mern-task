@@ -8,7 +8,6 @@ let useLogin=()=>{
     let[error,setError]=useState({})
     let[open,setOpen]=useState(false)
     let history=useHistory()
-    let {setAuth}=useAuthencation()
     let cookie=localStorage.getItem('__toketasjy42562627')
     console.log(cookie);
     let handleLogin=(e)=>{
@@ -20,7 +19,7 @@ let useLogin=()=>{
             pass:pass?'':'Please,give your password'
         })
         if(email && pass){
-            console.log('given two');
+            
             fetch('/auth/login',{
                 method:'POST',
                 headers:{
@@ -34,13 +33,13 @@ let useLogin=()=>{
                 })
             }).then(res=>res.json())
             .then(data=>{
-                console.log(data);
+                console.log(data)
                 setError({
                     msg:data.msg,
                     color:data.color
                 })
                 if(data.success){
-                    setAuth(true)
+                  
                     e.target.reset()
                     
                    

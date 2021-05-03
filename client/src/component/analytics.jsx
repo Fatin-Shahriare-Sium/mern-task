@@ -6,7 +6,7 @@ const Analytics = () => {
   let[dataArr,setDataArr]=useState([])
   window.addEventListener('resize',(e)=>{
     
-    if(e.target.innerWidth<800){
+    if(e.target.innerWidth<800 && window.innerWidth<800){
       console.log('tyfghvPX');
       defaults.plugins.legend.position='top'
     }else{

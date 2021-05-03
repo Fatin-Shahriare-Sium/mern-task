@@ -7,7 +7,7 @@ import useChangeTitle from './useChangeTitle'
 import Alert from './alert'
 import useForm from './useForm'
 import Small from './small'
-
+import {Link} from 'react-router-dom'
 const Signup = () => {
     function showAlert(){
         if(error.password){
@@ -53,6 +53,7 @@ const Signup = () => {
                             
                         </div>
                         <button className='btn btn-outline-success' type='submit'>Create Account</button>
+                        <p style={{marginTop:'1%'}}>Already,created an account?<Link to='/login'>Login</Link></p>
                     </form>
                 </div>
                 <div className="col-md-6 signup-img">
