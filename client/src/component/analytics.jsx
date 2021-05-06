@@ -47,7 +47,7 @@ const Analytics = () => {
         //compl  
         //impo  
         //delete 
-        fetch('/auth/userdata',{
+        fetch('https://merntaskma.herokuapp.com/auth/userdata',{
           method:'POST',
           headers:{
               'Content-Type':'application/json'

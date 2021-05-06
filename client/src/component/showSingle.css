@@ -168,3 +168,8 @@
        width: 79%;
    }
 }
+@media screen and (max-width:800px){
+    .alertx{
+        left: 9%;
+    }
+}

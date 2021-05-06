@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, {useState } from 'react'
 import ShowSingle from './showSingle'
 import ReactDOM from 'react-dom'
 import './showTask.css'
@@ -11,20 +11,26 @@ import EmptyImportantTask from './emptyImportantTask'
 import Loading from './loading'
 //https://medium.com/how-to-react/create-a-calendar-in-react-js-e48e43ab3a19
 const Showtask = () => {
-   
+   console.log('showtask');
     let location=useLocation()
     let {handleComplete,handleDelete,handleStar,state}= useTool(location)
-    
+    console.log(state);
     let AlertPortal=()=>{
-        let alertx=document.getElementById('alertx')
-
+        
+    
             
+        if(state.error){
+            setTimeout(()=>{
+                let alertx=document.getElementById('alertx')
+                alertx.style.display='none'
+            },700)
             return ReactDOM.createPortal(
                 <div id='alertx' className={`alertx ${state.error.color}`}>
                    <p> {state.error.msg}</p>
                   
                 </div>
                 ,document.getElementById('alert'))
+        }
            
 
   

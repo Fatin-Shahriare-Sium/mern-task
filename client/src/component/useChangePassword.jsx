@@ -8,7 +8,7 @@ let useChangePassword=()=>{
         let old=e.target[0].value
         let newpass=e.target[1].value
         console.log(e);
-        fetch('/auth/changePass',{
+        fetch('https://merntaskma.herokuapp.com/auth/changePass',{
             method:'POST',
             headers:{
                 'Content-Type':'application/json'

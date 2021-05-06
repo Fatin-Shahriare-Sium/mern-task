@@ -20,7 +20,7 @@ let useLogin=()=>{
         })
         if(email && pass){
             
-            fetch('/auth/login',{
+            fetch('https://merntaskma.herokuapp.com/auth/login',{
                 method:'POST',
                 headers:{
                     'Content-Type':'application/json'

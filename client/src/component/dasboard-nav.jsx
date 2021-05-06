@@ -21,7 +21,7 @@ const DasboardNav = ({name,pic}) => {
     })
     useEffect(()=>{
            
-        fetch('/auth/login',{
+      return  fetch('https://merntaskma.herokuapp.com/auth/login',{
             method:'POST',
             headers:{
                 'Content-Type':'application/json'

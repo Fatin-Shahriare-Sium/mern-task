@@ -14,7 +14,7 @@ const EditTask = () => {
         let des=document.getElementById('des')
         let start=document.getElementById('start')
         let end=document.getElementById('end')
-        fetch(`/task/${id}`,{
+        fetch(`https://merntaskma.herokuapp.com/task/${id}`,{
             method:'GET',
             headers:{
                 "Content-Type":"application/json"

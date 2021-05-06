@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import ChangePassword from './changePassword'
-import DasboardNav from './dasboard-nav'
 import ProfileForm from './profile-form'
 import './profile.css'
 const Profile = () => {

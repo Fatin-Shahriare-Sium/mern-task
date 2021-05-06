@@ -20,7 +20,7 @@ let useEdit=(idx,taskx)=>{
         })
         if(title && des && start && end){
             e.target.reset();
-            fetch(`/task/update/${idx}`,{
+            fetch(`https://merntaskma.herokuapp.com/task/update/${idx}`,{
                 method:'POST',
                 headers:{
                     "Content-Type":"application/json"

@@ -8,7 +8,7 @@ const DasboardHome = () => {
     let[recent,setRecent]=useState([])
     let cookie=localStorage.getItem('__toketasjy42562627')
     useEffect(()=>{
-        fetch('/task/recent',{
+        fetch('https://merntaskma.herokuapp.com/task/recent',{
             method:'POST',
             headers:{
                 'Content-Type':'application/json'

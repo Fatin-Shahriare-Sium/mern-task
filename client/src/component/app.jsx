@@ -6,9 +6,8 @@ import Signup from './signup'
 import Home from './home'
 import Login from './login'
 import { AuthProvider } from './authContext'
-import PrivateRoutex from './privateRoute2'
 import PrivateRoute from './privateRoute'
-import Profile from './profile'
+
 
 let App=()=>{
 

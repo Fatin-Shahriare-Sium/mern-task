@@ -17,7 +17,7 @@ let useCreateTask=()=>{
         })
         if(title && des && start && end){
             e.target.reset();
-            fetch('/task/create',{
+            fetch('https://merntaskma.herokuapp.com/task/create',{
                 method:'POST',
                 headers:{
                     "Content-Type":"application/json"

@@ -8,7 +8,7 @@ const ViewTask = () => {
     let[sigTask,setsigTask]=useState({})
     let[loading,setLoading]=useState(true)
     useEffect(()=>{
-        fetch(`/task/${id}`,{
+        fetch(`https://merntaskma.herokuapp.com/task/${id}`,{
             method:'GET',
             headers:{
                 'Content-Type':'application/json'

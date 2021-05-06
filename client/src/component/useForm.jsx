@@ -19,7 +19,7 @@ let useForm=()=>{
             msg:''
         })
         if(password===Conpassword && username && email && password){
-            fetch(`/auth/signup`,{
+            fetch(`https://merntaskma.herokuapp.com/auth/signup`,{
                 method:'POST',
                 headers:{
                     "Content-Type":"application/json"
