@@ -1,10 +1,10 @@
-## <div style='text-align:center;font-family:bismillah;font-size:2rem' dir="rtl">عنوان</div>
+## <div align="center" style='text-align:center;font-family:bismillah;font-size:2rem' dir="rtl">عنوان</div>
 # MERN STACK - Task Manager App
 
 This app's frontEnd is created using React.js .For,backend i use Nodejs,Expressjs and for database MongoDB.
 
 ## FrontEnd technologies:
-
+S
 - Reactjs
 - Bootstrap 5
 - ChartJs
