@@ -4,7 +4,7 @@
 This app's frontEnd is created using React.js .For,backend i use Nodejs,Expressjs and for database MongoDB.
 
 ## FrontEnd technologies:
-S
+
 - Reactjs
 - Bootstrap 5
 - ChartJs
