@@ -16,6 +16,7 @@ This app's frontEnd is created using React.js .For,backend i use Nodejs,Expressj
 - ExpressJs
 - Jwt 
 - BcryptJs
+- Redis
 - Mongoose and so on.
 
 >Actually,i used MongoDB Atlas free account.So,the performance is not good.It has latency when database communicated.
